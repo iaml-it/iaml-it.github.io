@@ -2,8 +2,8 @@
 title: "Transformers in Vision"
 description: |
   What have Transformers been up to?
-base_url: https://iaml-it.github.io/
-preview: "posts/2021-04-28-transformers-in-vision/ViT.gif"
+base_url: "https://iaml-it.github.io/"
+preview: "posts/2021-04-28-transformers-in-vision/ViT.png"
 author:
   - first_name: "Niccolò"
     last_name: "Zanichelli"
@@ -13,12 +13,15 @@ date: 04-28-2021
 output:
   distill::distill_article:
     toc: true
-    toc_depth: 3
+    toc_depth: 2
     self_contained: false
 creative_commons: CC BY
 bibliography: bibliography.bib
 csl: nature.csl
 link-citations: yes
+twitter:
+  site: "@iaml_it"
+  creator: "@nickz_42"
 ---
 
 

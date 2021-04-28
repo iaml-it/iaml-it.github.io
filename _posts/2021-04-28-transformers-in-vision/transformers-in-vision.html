@@ -113,6 +113,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <meta property="twitter:image" content="https://iaml-it.github.io/deit.png"/>
   <meta property="twitter:image:width" content="842"/>
   <meta property="twitter:image:height" content="801"/>
+  <meta property="twitter:site" content="@iaml_it"/>
+  <meta property="twitter:creator" content="@nickz_42"/>
 
   <!--/radix_placeholder_meta_tags-->
   
@@ -199,7 +201,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","base_url","preview","author","date","output","creative_commons","bibliography","csl","link-citations"]}},"value":[{"type":"character","attributes":{},"value":["Transformers in Vision"]},{"type":"character","attributes":{},"value":["What have Transformers been up to?\n"]},{"type":"character","attributes":{},"value":["https://iaml-it.github.io/"]},{"type":"character","attributes":{},"value":["posts/2021-04-28-transformers-in-vision/ViT.gif"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["first_name","last_name","url","affiliation"]}},"value":[{"type":"character","attributes":{},"value":["Niccolò"]},{"type":"character","attributes":{},"value":["Zanichelli"]},{"type":"character","attributes":{},"value":["https://twitter.com/nickz_42"]},{"type":"character","attributes":{},"value":["University of Parma"]}]}]},{"type":"character","attributes":{},"value":["04-28-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth","self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[3]},{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["CC BY"]},{"type":"character","attributes":{},"value":["bibliography.bib"]},{"type":"character","attributes":{},"value":["nature.csl"]},{"type":"logical","attributes":{},"value":[true]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","base_url","preview","author","date","output","creative_commons","bibliography","csl","link-citations","twitter"]}},"value":[{"type":"character","attributes":{},"value":["Transformers in Vision"]},{"type":"character","attributes":{},"value":["What have Transformers been up to?\n"]},{"type":"character","attributes":{},"value":["https://iaml-it.github.io/"]},{"type":"character","attributes":{},"value":["posts/2021-04-28-transformers-in-vision/ViT.png"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["first_name","last_name","url","affiliation"]}},"value":[{"type":"character","attributes":{},"value":["Niccolò"]},{"type":"character","attributes":{},"value":["Zanichelli"]},{"type":"character","attributes":{},"value":["https://twitter.com/nickz_42"]},{"type":"character","attributes":{},"value":["University of Parma"]}]}]},{"type":"character","attributes":{},"value":["04-28-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["toc","toc_depth","self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[true]},{"type":"integer","attributes":{},"value":[2]},{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["CC BY"]},{"type":"character","attributes":{},"value":["bibliography.bib"]},{"type":"character","attributes":{},"value":["nature.csl"]},{"type":"logical","attributes":{},"value":[true]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["site","creator"]}},"value":[{"type":"character","attributes":{},"value":["@iaml_it"]},{"type":"character","attributes":{},"value":["@nickz_42"]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -1573,21 +1575,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <ul>
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#overview">Overview</a></li>
-<li><a href="#vision-transformers-for-image-recognition">Vision Transformers for Image Recognition</a>
-<ul>
-<li><a href="#an-image-is-worth-16x16-words-the-vision-transformer">An image is worth 16x16 words: the Vision Transformer</a></li>
-<li><a href="#stronger-data-augmentation-allows-more-efficient-learning">Stronger data augmentation allows more efficient learning</a></li>
-<li><a href="#incorporating-relative-self-attention-in-resnet-design">Incorporating relative Self-Attention in ResNet design</a></li>
-<li><a href="#conditional-positional-encodings">Conditional Positional Encodings</a></li>
-<li><a href="#modeling-the-local-patch-structure">Modeling the local patch structure</a></li>
-<li><a href="#deeper-and-deeper-with-vision-transformers">Deeper and deeper with Vision Transformers</a></li>
-<li><a href="#convolutional-insights">Convolutional insights</a></li>
-<li><a href="#the-importance-of-hierarchy">The importance of Hierarchy</a></li>
-<li><a href="#multi-scale-features-and-cross-attention">Multi-Scale features and Cross-Attention</a></li>
-<li><a href="#integrating-convolutions-in-attention">Integrating convolutions in attention</a></li>
-<li><a href="#haloing-and-strided-local-self-attention">Haloing and Strided local Self-Attention</a></li>
-<li><a href="#second-order-pooling">Second-order pooling</a></li>
-</ul></li>
+<li><a href="#vision-transformers-for-image-recognition">Vision Transformers for Image Recognition</a></li>
 <li><a href="#a-comparison-for-image-classification">A Comparison for Image Classification</a></li>
 <li><a href="#robustness-and-equivariance">Robustness and Equivariance</a></li>
 <li><a href="#vision-transformers-in-self-supervised-learning">Vision Transformers in Self-Supervised Learning</a></li>
