@@ -2,7 +2,7 @@ name: "."
 title: "IAML Distill"
 description: |
   IAML Distill
-output_dir: "_site"
+output_dir: "docs"
 navbar:
   right:
     - text: "Home"
