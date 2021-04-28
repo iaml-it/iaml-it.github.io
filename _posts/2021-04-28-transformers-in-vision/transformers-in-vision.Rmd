@@ -2,6 +2,7 @@
 title: "Transformers in Vision"
 description: |
   What have Transformers been up to?
+preview: "posts/2021-04-28-transformers-in-vision/ViT.gif"
 author:
   - name: Niccolò Zanichelli
     url: https://twitter.com/nickz_42
@@ -9,6 +10,7 @@ date: 04-28-2021
 output:
   distill::distill_article:
     self_contained: false
+creative_commons: CC BY
 bibliography: bibliography.bib
 csl: nature.csl
 ---
