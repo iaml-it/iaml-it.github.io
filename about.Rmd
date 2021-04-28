@@ -8,4 +8,4 @@ description: |
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-The Italian Association for Machine Learning (IAML) is the largest non-profit association in Italy promoting ML. Founded at the end of 2017, it has a large active community promoting and sharing content. This blog is part of our initiatives to expand our reach and offer high-quality technical content to everyone.
+The [Italian Association for Machine Learning](https://iaml.it/) (IAML) is the largest non-profit association in Italy promoting ML. Founded at the end of 2017, it has a large active community promoting and sharing content. This blog is part of our initiatives to expand our reach and offer high-quality technical content to everyone.

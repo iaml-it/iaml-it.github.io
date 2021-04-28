@@ -2,7 +2,7 @@ name: "IAML Distill Blog"
 title: "IAML Distill Blog"
 description: |
   The official Distill blog of the Italian Association for Machine Learning 
-output_dir: "docs/"
+output_dir: "docs"
 base_url: https://iaml-it.github.io/distill
 navbar:
   right:

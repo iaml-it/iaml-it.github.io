@@ -1,11 +1,11 @@
 ---
-title: "Transformers in Vision: a Recap"
+title: "Transformers in Vision"
 description: |
-  A short description of the post.
+  What have Transformers been up to?
 author:
   - name: Niccolò Zanichelli
     url: https://twitter.com/nickz_42
-date: 04-27-2021
+date: 04-28-2021
 output:
   distill::distill_article:
     self_contained: false
