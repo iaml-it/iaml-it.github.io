@@ -2,13 +2,17 @@
 title: "Transformers in Vision"
 description: |
   What have Transformers been up to?
-preview: "posts/2021-04-28-transformers-in-vision/ViT.gif"
+preview: "posts/2021-04-28-transformers-in-vision/ViT.png"
 author:
-  - name: Niccolò Zanichelli
+  - first_name: "Niccolò"
+    last_name: "Zanichelli"
     url: https://twitter.com/nickz_42
+    affiliation: "University of Parma"
 date: 04-28-2021
 output:
   distill::distill_article:
+    toc: true
+    toc_depth: 2
     self_contained: false
 creative_commons: CC BY
 bibliography: bibliography.bib
@@ -40,6 +44,8 @@ Figures are taken from their respective papers unless the source is explicitly p
 
 Before we begin, it is worth noting that familiarity with transformers and self-attention is recommended; great resources include Jay Alammar's [Illustrated Transformer](http://jalammar.github.io/illustrated-transformer/) and Peter Bloem's [Transformers from scratch](http://peterbloem.nl/blog/transformers). For high-quality implementations of many models discussed in this post, check out Ross Wightman's [PyTorch Image Models](https://github.com/rwightman/pytorch-image-models) as well as [Phil Wang's work](https://github.com/lucidrains/).
 
+## Vision Transformers for Image Recognition
+
 ### An image is worth 16x16 words: the Vision Transformer
 
 First introduced in [**An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale**](https://openreview.net/forum?id=YicbFdNTTy)[@vit], Vision Transformers (ViTs) have taken computer vision by storm, leading to hundreds of citations in the span of a few months. The paper's main goal was to show that a vanilla Transformer, once adapted to deal with data from the visual domain, could compete with some of the most performant convolutional neural networks (CNNs) developed up to that point.
@@ -67,11 +73,9 @@ The paper has two main contributions:
 * A novel training recipe (referred to below as the DeiT recipe), characterized by more substantial data augmentation and stochastic depth[@depth]. These changes introduce additional regularization limiting ViT's tendency to overfit in the small data regime, thus boosting its performance. The authors recommend the use of Rand-Augment[@randaugment], Mixup[@mixup], CutMix[@cutmix], and Random Erasing[@randerasing]; they also recommend not to use DropOut[@dropout].
 * Hard-label distillation. In this approach, an additional learnable token, called the distillation token, is concatenated to the patch embeddings. The model is then trained with the loss function $$\mathcal{L}_{hardDistill}=\frac{1}{2}\mathcal{L}_{CE}(\sigma(Z_{cls}), y_{true}) + \frac{1}{2}\mathcal{L}_{CE}(\sigma(Z_{distill}), y_{teacher})$$ where $\mathcal{L}_{CE}$ is the cross-entropy loss function, $\sigma$ is the softmax function, $Z_{cls}$ and $Z_{distill}$ are the student model's logits derived respectively from the class and distillation tokens, and $y_{true}$ and $y_{teacher}$ are respectively the true and the teacher's hard labels. This distillation technique allows the model to learn even when the combination of multiple strong data augmentations causes the provided label to be imprecise, as the teacher network will produce the most probable label. Interestingly, the authors found CNNs to be better teacher networks than other Vision Transformers.
 
-<center>
-```{r, out.width = "100%", fig.cap = "The Data efficient image Transformer hard-label distillation procedure."}
+```{r, out.width = "100%", fig.align="center", fig.cap = "The Data efficient image Transformer hard-label distillation procedure."}
 knitr::include_graphics("deit.png")
 ```
-</center>
 
 The resulting models, called Data efficient image Transformers (DeiTs), were competitive with EfficientNet on the accuracy/step time trade-off, proving that ViT-based models could compete with highly performant CNNs even in the ImageNet data regime. It is however worth noting that DeiTs performed much worse than [EfficientNets](http://proceedings.mlr.press/v97/tan19a.html)[@efficientnetv1] in terms of accuracy/parameters and accuracy/FLOPs.
 
@@ -197,7 +201,6 @@ The Pyramid Vision Transformer.</p>*
 
 [**Swin Transformer: Hierarchical Vision Transformer using Shifted Windows**](https://arxiv.org/abs/2103.14030)[@swin] suggested a different route: use local self-attention inside (non-overlapping, local) windows, allow cross-window communication through so-called *shifted window partitioning*, and produce a hierarchical representation by progressively merging the windows themselves. 
 
-
 *<p style="text-align: center;">![](https://i.imgur.com/4PhzPKC.png =640x)
 The Swin Transformer shifted window partitioning.</p>*
 
@@ -318,3 +321,87 @@ As the recent ResNet-RS paper [[Bello et al.; 2021](https://arxiv.org/abs/2103.0
 Similarly, the number of parameters is a poor indicator of memory consumption during training. Again from the ResNet-RS paper, "parameter count does not necessarily dictate memory consumption during training because memory is often dominated by the size of the activations" which have to be stored to execute the backpropagation algorithm. "At inference, activations  can  be  discarded and parameter count is a better proxy for actual memory consumption."
  
 ResNet-RS models are a great example of this issue: an ResNet-RS has respectively $3{-}4\times$ and $2\times$ the amount of parameters and FLOPs of a similarly accurate EfficientNet, yet it is $3\times$ as fast and consumes about $2\times$ less memory. For these reasons, it would be preferable for authors of new studies to include, together with parameter count and FLOP use, also latency and memory usage measurements.
+
+## Robustness & Equivariance
+
+[**Understanding Robustness of Transformers for Image Classification**](https://arxiv.org/abs/2103.14586)[@robustness] studied the robustness of Vision Transformers to input, model, and adversarial perturbations. The authors found Vision Transformers to have an advantage compared to CNNs of similar size for both input and model perturbations (particularly in large data regimes). However, for some kinds of adversarial attacks, Vision Transformers were found to be more susceptible, at least for small sample sizes.
+
+The authors also found vanilla Vision Transformers highly redundant, a finding first reported in DeepViTs, suggesting the possible use of heavy pruning as a path to more efficient models.
+
+In [**Group Equivariant Stand-Alone Self-Attention For Vision**](https://openreview.net/forum?id=JkfYjnOEo6M)[@gsa], the authors developed a self-attention formulation equivariant to arbitrary symmetry groups. The resulting models, called Group Self-Attention Networks (GSA-Nets), enjoy superior parameter efficiency, although not quite reaching that of comparable-size equivariant CNNs.
+
+## Vision Transformers in self-supervised learning
+
+Building on top of previous studies ([iGPT](https://openai.com/blog/image-gpt/)[@igpt] and [masked patch prediction in the Vision Transformers paper](https://openreview.net/pdf?id=YicbFdNTTy#subsubsection.B.1.2)[@vit]), two papers have investigated self-supervised approaches using Vision Transformers.
+
+[**An Empirical Study of Training Self-Supervised Vision Transformers**](https://arxiv.org/abs/2104.02057)[@random] identified an instability encountered during self-supervised training, causing performance degradation, particularly at large batch sizes. The authors propose a curious trick: a fixed, random patch projection, unlike normal ViTs where patch embeddings are learned just like the rest of the network.
+
+*<p style="text-align: center;">![](https://i.imgur.com/6LA44IF.png =480x)) 
+A comparison of training stability using learned and random patch embeddings.</p>*
+
+The authors showed that, by coupling this trick with the use of batch normalization in MLP blocks (instead of Layer Normalization), self-supervised training of Vision Transformers could be made more stable, allowing the models to achieve superior performance on several downstream tasks.
+
+Unfortunately, the authors also noted that this approach was not sufficient: the instability is alleviated but not solved, particularly at large learning rates.
+
+[**SiT: Self-supervised vIsion Transformer**](https://arxiv.org/abs/2104.03602)[@sit], studied a mix of three semi-supervised tasks (rotation prediction, image reconstruction, and a contrastive one) that, when combined, allow Vision Transformers to perform well on downstream tasks.
+
+*<p style="text-align: center;">![](https://i.imgur.com/BYHT0ze.png =640x) 
+The Self-supervised vIsion Transformer.</p>*
+
+## Vision Transformers in medical research
+
+Vision Transformers have recently been applied to medical research, mainly in segmentation tasks and diagnosis prediction ones.
+
+[**TransUNet: Transformers Make Strong Encoders for Medical Image Segmentation**](https://arxiv.org/abs/2102.04306)[@transunet] explored using a hybrid CNN-ViT encoder in an UNet-style architecture they call TransUNet. The authors reported favorable results in several segmentation tasks, especially when using a cascaded upsampler to obtain the final segmentation mask.
+
+In [**Medical Transformer: Gated Axial-Attention for Medical Image Segmentation**](https://arxiv.org/abs/2102.10662)[@medt], the authors proposed the use of two branches, a shallower one, operating on the global context of the image, and a deeper one, operating locally on patches. The basic building block used for the model, which they named Medical Transformer (MedT), is (gated) axial self-attention[@axial]. The authors obtained improvements over baselines on several medical segmentation tasks.
+
+*<p style="text-align: center;">![](https://i.imgur.com/c6jwSOE.png =640x)
+The Medical Transformer.</p>*
+
+[**UNETR: Transformers for 3D Medical Image Segmentation**](https://arxiv.org/abs/2103.10504)[@unetr] adapted ViTs for 3D medical segmentation tasks. The authors showed that a simple adaption was sufficient to improve over baselines on several 3D segmentation tasks. 
+
+## Vision Transformers for Video Recognition
+
+[**Video Transformer Network**](https://arxiv.org/abs/2102.00719)[@vtn] (VTN) proposed the use of a pre-trained 2D spatial backbone (the authors experiment with both CNN-based and ViT-based feature extractors) combined with a Transformer (in this case, a Longformer) operating on the extracted feature maps. The authors showed that this simple approach was competitive with baselines such as [SlowFast](https://arxiv.org/abs/1812.03982)[@slowfast].
+
+[**Is Space-Time Attention All You Need for Video Understanding**](https://arxiv.org/abs/2102.05095)[@timesformer] introduced TimeSformer, an adaption of ViTs to video. After exploring several possible attention variants, the authors proposed one deemed Divided Space-Time attention. In this approach, frames are first divided into patches and linearly embedded, then fed to a single transformer encoder. Every encoder layer has two attention blocks applied consecutively: the first one on patch embeddings at the same location but in different frames (temporal attention), the second on patch embeddings in the same frame (spatial attention).
+
+The authors adopted ImageNet pretraining for spatial attention blocks and showed that the resulting models achieved state of the art, outperforming previous baselines on standard datasets such as [Kinetics-400](https://arxiv.org/abs/1705.06950)[@kinetics].
+
+[**An Image is Worth 16x16 Words, What is a Video Worth?**](https://arxiv.org/abs/2103.13915)[@videoworth] proposed using a Vision Transformer to model the relationship between intra-frame patches, followed by a (temporal) Transformer encoder, modeling inter-frame relationships. It is conceptually similar to a VTN with a ViT-based spatial backbone.
+
+The resulting models (called Spatio and Temporal Transformers, or STAMs) outperformed strong baselines such as [X3D](https://arxiv.org/abs/2004.04730)[@x3d] in the accuracy/FLOPs trade-off.
+
+[**ViViT: A Video Vision Transformer**](https://arxiv.org/abs/2103.15691)[@vivit] discusses several approaches to adapt ViTs to video, and found the use of *tubelet embeddings*, linear projections of spatio-temporal tubes, to be most effective.
+
+*<p style="text-align: center;">![](https://i.imgur.com/a3TmRBK.png =640x)
+Tubelet embeddings in ViViT.</p>*
+
+The positional embeddings are initialized by temporally repeating positional embeddings obtained from pre-trained ViTs. Tubelet embeddings are instead initialized using "central frame initialization", where the temporally central frame's embedding is initialized using pre-trained ViT patch embeddings, while the rest are initialized with zeros.
+
+The resulting models, called Video Vision Transformers (ViViTs), achieved state of the art, outperforming TimeSformers, on several standard benchmarks. The authors even reported experiments using an extremely large backbone called ViViT-H, initialized from the similarly large ViT-H pre-trained on JFT-300M. The model obtained a substantial performance improvement, albeit with significant computational cost.
+
+Recently, [**Multiscale Vision Transformers**](https://arxiv.org/abs/2104.11227)[@mvit] proposed the adoption of a hierarchical structure by progressively increasing the feature dimension while decreasing the spatiotemporal one. This is achieved through the use of pooling, applied to keys and values in attention blocks.
+
+The authors demonstrated the effectiveness of this approach by showing how the resulting models, called Multiscale Vision Transformers (MViTs), could outperform TimeSFormers and ViViTs on standard benchmarks while using a fraction of the compute. Importantly, this method does not require additional data (unlike TimeSFormers and ViViTs, that required ImageNet pretraining).
+
+## Conclusion
+
+At the time of writing, the only convolutional architecture still unsurpassed by transformers in efficiency is the recent [EfficientNetV2 family of models](https://arxiv.org/abs/2104.00298)[@efficientnetv2], obtained through extensive neural architecture search. No similarly extensive search has been performed for ViT-based models, but the small one reported in [**CvT: Introducing Convolutions to Vision Transformers**](https://arxiv.org/abs/2103.15808)[@cvt] achieved promising results (CvT-13-NAS).
+
+From recent research, we can draw several conclusions:
+
+* Inductive biases shape a model's performance. The hard inductive biases that characterize convolutional neural networks provide them with a higher performance floor and a lower performance ceiling. Conversely, transformer-based approaches struggle to compete in the small data regime (thus requiring stronger data augmentations) but shine in regimes where data is plentiful. As many papers investigate, an effective solution may be injecting soft inductive biases in transformers, achieving both high sample efficiency in small data regimes and high model expressiveness when sufficient data is provided.
+* Vanilla Vision Transformers appear highly redundant; be it through custom normalization strategies, hierarchical structure, or pruning, they can be made more computationally efficient at little or no performance cost.
+* Several studies have highlighted issues with the use of the class token in vanilla Vision Transformers. Better alternatives appear to be both late stage insertion of the class token and the use of global average pooling. Second-order pooling and class-attention layers seem to be better still.
+* The amount of research coming out on a daily basis is significant. For this reason, we would like to highlight a few models for a more in-depth look, including the original [Vision Transformers](https://openreview.net/forum?id=YicbFdNTTy)[@vit], [DeiTs](https://arxiv.org/abs/2012.12877)[@deit], [TNTs](https://arxiv.org/abs/2103.00112)[@tnt], [ConViTs](https://arxiv.org/abs/2103.10697)[@convit], [Swin Transformers](https://arxiv.org/abs/2103.14030)[@swin], [CvTs](https://arxiv.org/abs/2103.15808)[@cvt], [CaiTs](https://arxiv.org/abs/2103.17239)[@cait], and [ViLs](https://arxiv.org/abs/2103.15358)[@vil].
+* Transformers in vision are just getting started, and their performance is likely to continue improving as a wider part of the computer vision community adopts them. Increases in compute and data availability are also likely to increasingly tilt the balance in their favor.
+
+The success of transformers in vision has had far-reaching consequences. We have discussed their influence on medical and video tasks, but their impact goes as far as audio (with [AST](https://arxiv.org/abs/2104.01778)[@ast], [Keyword Transformer](https://arxiv.org/abs/2104.00769)[@keyword]) and multimodal architectures (such as [ViLT](https://arxiv.org/abs/2102.03334)[@vilt] and [VATT](https://arxiv.org/abs/2104.11178)[@vatt]). Their success  has also inspired architectures with even fewer inductive biases, such as the [Perceiver](https://arxiv.org/abs/2103.03206)[@perceiver].
+
+One cannot help but feel excited as more and more researchers from all over the artificial intelligence field converge toward common, more general architectures.
+
+## Acknowledgements {.appendix}
+
+Thanks to Simone Scardapane, Andrea Panizza, Amedeo Buonanno and Iacopo Poli for help in proofreading and improving this work.

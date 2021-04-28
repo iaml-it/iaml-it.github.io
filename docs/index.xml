@@ -17,14 +17,5 @@
       <pubDate>Wed, 28 Apr 2021 00:00:00 +0000</pubDate>
       <media:content url="https://iaml-it.github.io/distill/posts/2021-04-28-transformers-in-vision/deit.png" medium="image" type="image/png" width="842" height="801"/>
     </item>
-    <item>
-      <title>Transformers in Vision: a Recap</title>
-      <dc:creator>Niccolò Zanichelli</dc:creator>
-      <link>https://iaml-it.github.io/distill/posts/2021-04-28-transformers-in-vision-a-recap</link>
-      <description>A short description of the post.</description>
-      <guid>https://iaml-it.github.io/distill/posts/2021-04-28-transformers-in-vision-a-recap</guid>
-      <pubDate>Tue, 27 Apr 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://iaml-it.github.io/distill/posts/2021-04-28-transformers-in-vision-a-recap/deit.png" medium="image" type="image/png" width="842" height="801"/>
-    </item>
   </channel>
 </rss>
