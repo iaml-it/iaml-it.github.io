@@ -2,11 +2,13 @@ name: "IAML Distill Blog"
 title: "IAML Distill Blog"
 description: |
   IAML Distill
-output_dir: "."
+output_dir: "docs/"
+base_url: https://iaml-it.github.io/distill
 navbar:
   right:
     - text: "Home"
       href: index.html
     - text: "About"
       href: about.html
+  search: false
 output: distill::distill_article

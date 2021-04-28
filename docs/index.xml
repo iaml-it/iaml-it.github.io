@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+  <channel>
+    <title>IAML Distill Blog</title>
+    <link>https://iaml-it.github.io/distill</link>
+    <atom:link href="https://iaml-it.github.io/distill/index.xml" rel="self" type="application/rss+xml"/>
+    <description>IAML Distill
+</description>
+    <generator>Distill</generator>
+    <lastBuildDate>Wed, 28 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Welcome to IAML Distill</title>
+      <dc:creator>Nora Jones</dc:creator>
+      <link>https://iaml-it.github.io/distill/posts/welcome</link>
+      <description>Welcome to our new blog, IAML Distill. We hope you enjoy 
+reading what we have to say!</description>
+      <guid>https://iaml-it.github.io/distill/posts/welcome</guid>
+      <pubDate>Wed, 28 Apr 2021 00:00:00 +0000</pubDate>
+    </item>
+  </channel>
+</rss>
