@@ -69,8 +69,6 @@
         <text macro="title" font-weight="bold" suffix="." />
         <text macro="author" suffix=", "/>
         <text macro="issued" suffix=". "/>
-        <text macro="journal" suffix="."/>
-        <text macro="volume" suffix="."/>
     </layout>
   </bibliography>
 </style>
