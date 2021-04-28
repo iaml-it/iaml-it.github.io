@@ -1,5 +1,5 @@
 ---
-title: "IAML Distill"
+title: "IAML Distill Blog"
 site: distill::distill_website
 listing: posts
 ---
