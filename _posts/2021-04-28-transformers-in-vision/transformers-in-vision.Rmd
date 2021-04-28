@@ -160,11 +160,9 @@ The resulting models, called Class-attention image Transformers (CaiTs), achieve
 
 More precisely, the initialization of a GPSA block is parameterized by a head-specific center of attention (the position to which the head pays most attention to, given the query patch) and a locality strength (which determines how focused every head is around its center of attention). GPSA blocks also employ a gating mechanism to better balance content and positional information. By appropriately setting the centers of attention and the locality strength of GPSA blocks, the model can compete with CNNs in the low data regime and at the same time enjoy ViT-like expressive power in large data regimes. 
 
-<center>
 ```{r, out.width="100%", fig.cap = "Input image (top left), attention maps of an untrained SA block (top right) and GPSA blocks (center and bottom)."}
 knitr::include_graphics("convit.png")
 ```
-</center>
 
 The authors demonstrated the effectiveness of this elegant approach through an empirical study comparing DeiTs to the resulting models, which they named Convolutional Vision Transformers (ConViTs): on ImageNet ConViTs enjoy progressively superior performance as the sample size is diminished while retaining DeiT-like performance at full sample size.
 
@@ -187,27 +185,31 @@ Several papers have studied the application of a hierarchical structure to Visio
 
 [**Tokens-to-Token ViT: Training Vision Transformers from Scratch on ImageNet**](https://arxiv.org/abs/2101.11986)[@t2t] introduced the Token-to-Token module (T2T), a module that reshapes the input sequence to a 2D structure, applies a soft split (allowing overlapping patches), and flattens the resulting patches. By adjusting the patch size used in the module, the length of the token sequences diminishes progressively throughout the network.
 
-*<p style="text-align: center;">![](https://i.imgur.com/sAnm4Ea.png =640x) 
-The Token-to-Token module</p>*
+```{r, out.width="100%", fig.cap = "The Token-to-Token module architecture."}
+knitr::include_graphics("t2t.png")
+```
 
 The authors obtained favorable results, with performance comparable to that of [MobileNets](https://ieeexplore.ieee.org/document/8578572)[@mobile].
 
 [**Pyramid Vision Transformer: A Versatile Backbone for Dense Prediction without Convolutions**](https://arxiv.org/abs/2102.12122)[@pvt] introduced a variant of Self-Attention called spatial-reduction attention (SRA), characterized by spatial reduction of both keys and values. By applying SRA at the end of several stages, the spatial dimensions of the feature map slowly decrease throughout the model. The resulting models, called Pyramid Vision Transformers (PVTs), can deal with a variety of tasks, including dense prediction, object detection, and semantic segmentation, where high-resolution images are typical.
 
-*<p style="text-align: center;">![](https://i.imgur.com/zduuhP7.png =640x) 
-The Pyramid Vision Transformer.</p>*
+```{r out.width = "100%", fig.align="center", fig.cap = "The Pyramid Vision Transformer."}
+knitr::include_graphics("pvt.png")
+```
 
 [**Scalable Visual Transformers with Hierarchical Pooling**](https://arxiv.org/abs/2103.10619)[@hvt] explored the use of max-pooling to diminish the sequence length progressively.  The authors also replaced the class token used in ViT with a final global average pooling layer. The resulting models, called Hierarchical Vision Transformers (HVTs), are trained with the DeiT recipe and scaled up (in the embedding dimension and number of heads) to have a comparable computational cost to DeiTs, achieving gains in the low (sub $5$) GFLOPs regime.
 
 [**Swin Transformer: Hierarchical Vision Transformer using Shifted Windows**](https://arxiv.org/abs/2103.14030)[@swin] suggested a different route: use local self-attention inside (non-overlapping, local) windows, allow cross-window communication through so-called *shifted window partitioning*, and produce a hierarchical representation by progressively merging the windows themselves. 
 
-*<p style="text-align: center;">![](https://i.imgur.com/4PhzPKC.png =640x)
-The Swin Transformer shifted window partitioning.</p>*
+```{r out.width = "100%", fig.align="center", fig.cap = "The Swin Transformer shifted window partitioning procedure."}
+knitr::include_graphics("swin2.png")
+```
 
 In the last stage of the network, all local windows have been merged, resulting in blocks effectively using global self-attention on a feature map whose spatial dimensions have been significantly decreased. It's worth noting that this approach scales linearly with image size.
 
-*<p style="text-align: center;">![](https://i.imgur.com/L6bWBM0.png =640x)
-Swin Transformer (left) and ViT (right). Attention is applied on patches (black) inside windows (red).</p>*
+```{r out.width = "100%", fig.align="center", fig.cap = "Swin Transformer (left) and ViT (right). Attention is applied on patches (black) inside windows (red)."}
+knitr::include_graphics("swin1.png")
+```
 
 The authors also reported positive results applying T5-style relative positional bias in attention blocks and obtained promising results both on ImageNet and ImageNet-21k, as well as in object detection and semantic segmentation tasks.
 
@@ -227,8 +229,9 @@ The branches employ two separate class tokens. Late in the network (after a sepa
 
 In particular, inside cross-attention fusion blocks, class tokens are concatenated to the patch embeddings of the other branch and processed by attention before being returned to their respective branch. 
 
-*<p style="text-align: center;">![](https://i.imgur.com/tkdBf8X.png =480x) 
-The Cross-Attention fusion layer for the large branch.</p>*
+```{r out.width = "100%", fig.align="center", fig.cap = "The Cross-Attention fusion layer for the large branch."}
+knitr::include_graphics("crossvit.png")
+```
 
 The output of MLP heads based on the large and small branches tokens is then added together to generate the model's logits.
 
@@ -241,8 +244,9 @@ The resulting models, which the authors named CrossViTs, are trained with the De
 * The Convolutional Token Embedding, a module characterized by a strided convolution and inserted at the beginning of every stage. 
 * The Convolutional Projection(s) in the attention blocks. These projections, implemented through depthwise separable convolutions, allow queries, keys, and values to be influenced by neighboring tokens. Further, larger strides for keys and values diminish the tokens spatial dimensions, decreasing the associated parameters count and computational cost.
 
-*<p style="text-align: center;">![](https://i.imgur.com/ka08RVo.png =640x) 
-The (strided) Convolutional Projections.</p>*
+```{r out.width = "100%", fig.align="center", fig.cap = "The (strided) Convolutional Projections."}
+knitr::include_graphics("cvt.png")
+```
 
 These two features allow the model to progressively reduce the tokens feature and spatial dimensions, allowing CvTs to adopt a hierarchical multi-stage architecture.
 
@@ -252,8 +256,9 @@ The authors adopted the original ViT training recipe and achieved competitive pe
 
 [**Multi-Scale Vision Longformer: A New Vision Transformer for High-Resolution Image Encoding**](https://arxiv.org/abs/2103.15358)[@vil] introduced a 2D version of [Longformer](https://arxiv.org/abs/2004.05150)[@long], which the authors call Vision Longformer. Conceptually, it is characterized by two different sets of tokens: a set of global tokens,  allowed to attend to all tokens, and local tokens, only allowed to attend to global tokens and tokens spatially close to them.
 
-*<p style="text-align: center;">![](https://i.imgur.com/CStRpbb.png =480x) 
-Global and local tokens in Multi-Scale Vision Longformers.</p>*
+```{r out.width = "100%", fig.align="center", fig.cap = "Global and local tokens in Multi-Scale Vision Longformers."}
+knitr::include_graphics("vil.png")
+```
 
 It's worth noting that, at least in vision-only tasks, global tokens are discarded at the end of every attention block (while local tokens are reshaped and passed to the next one), since they have at that point already fulfilled their role of allowing efficient communication between spatially distant tokens.
 
@@ -265,8 +270,9 @@ The authors adopted DeiT-style training and achieved impressive parameter and FL
 
 More precisely, the authors introduced a novel strategy called Blocked Self-Attention: input is first divided into blocks (which will be used as queries), and neighboring pixels are banded together and padded, in an operation denominated haloing, to generate keys and values. Finally, attention is applied.
 
-*<p style="text-align: center;">![](https://i.imgur.com/ejTpcGw.png =640x) 
-Blocked local Self-Attention as used in HaloNets.</p>*
+```{r out.width = "100%", fig.align="center", fig.cap = "Blocked local Self-Attention as used in HaloNets."}
+knitr::include_graphics("halonet.png")
+```
 
 It’s worth noting that this operation causes layers not to be translationally equivariant, but the authors took this route to obtain higher hardware utilization.
 
@@ -278,8 +284,9 @@ The resulting models, called HaloNets, achieved extremely high parameter efficie
 
 [**So-ViT: Mind Visual Tokens for Vision Transformer**](https://arxiv.org/abs/2104.10935)[@sovit] recently proposed the use of second-order pooling to extract high-level information from visual tokens (that is all tokens apart from the class one). The model's logits are finally obtained by summing up the output of two separate linear heads, one applied to the class token, and one applied to the pooled features. 
 
-*<p style="text-align: center;">![](https://i.imgur.com/nGA1Bs3.png =480x)
-So-ViT architecture.</p>*
+```{r out.width = "100%", fig.align="center", fig.cap = "The So-ViT architecture."}
+knitr::include_graphics("sovit.png")
+```
 
 The resulting models, named Second-order ViTs (So-ViTs), are trained with an expanded DeiT recipe, and obtain competitive results.
 
@@ -313,12 +320,11 @@ htmltools::tags$iframe(
 )
 ```
 
-
 It's worth keeping in mind that FLOP use and parameter count are not necessarily representative of latency or memory consumption. 
 
-As the recent ResNet-RS paper [[Bello et al.; 2021](https://arxiv.org/abs/2103.07579)] explains, "in custom hardware architectures (e.g. TPUs and GPUs), operations are often bounded by memory access costs and have different levels of optimization on modern matrix multiplication units." For these reasons, FLOPs are a particularly poor proxy for latency time.
+As the recent [ResNet-RS paper](https://arxiv.org/abs/2103.07579)[@resnetrs] explains, *"in custom hardware architectures (e.g. TPUs and GPUs), operations are often bounded by memory access costs and have different levels of optimization on modern matrix multiplication units."* For these reasons, FLOPs are a particularly poor proxy for latency time.
 
-Similarly, the number of parameters is a poor indicator of memory consumption during training. Again from the ResNet-RS paper, "parameter count does not necessarily dictate memory consumption during training because memory is often dominated by the size of the activations" which have to be stored to execute the backpropagation algorithm. "At inference, activations  can  be  discarded and parameter count is a better proxy for actual memory consumption."
+Similarly, the number of parameters is a poor indicator of memory consumption during training. Again from the ResNet-RS paper, *"parameter count does not necessarily dictate memory consumption during training because memory is often dominated by the size of the activations"* which have to be stored to execute the backpropagation algorithm. *"At inference, activations  can  be  discarded and parameter count is a better proxy for actual memory consumption."*
  
 ResNet-RS models are a great example of this issue: an ResNet-RS has respectively $3{-}4\times$ and $2\times$ the amount of parameters and FLOPs of a similarly accurate EfficientNet, yet it is $3\times$ as fast and consumes about $2\times$ less memory. For these reasons, it would be preferable for authors of new studies to include, together with parameter count and FLOP use, also latency and memory usage measurements.
 
@@ -336,8 +342,9 @@ Building on top of previous studies ([iGPT](https://openai.com/blog/image-gpt/)[
 
 [**An Empirical Study of Training Self-Supervised Vision Transformers**](https://arxiv.org/abs/2104.02057)[@random] identified an instability encountered during self-supervised training, causing performance degradation, particularly at large batch sizes. The authors propose a curious trick: a fixed, random patch projection, unlike normal ViTs where patch embeddings are learned just like the rest of the network.
 
-*<p style="text-align: center;">![](https://i.imgur.com/6LA44IF.png =480x)) 
-A comparison of training stability using learned and random patch embeddings.</p>*
+```{r out.width = "100%", fig.align="center", fig.cap = "A comparison of training stability using learned and random patch embeddings."}
+knitr::include_graphics("random.png")
+```
 
 The authors showed that, by coupling this trick with the use of batch normalization in MLP blocks (instead of Layer Normalization), self-supervised training of Vision Transformers could be made more stable, allowing the models to achieve superior performance on several downstream tasks.
 
@@ -345,8 +352,9 @@ Unfortunately, the authors also noted that this approach was not sufficient: the
 
 [**SiT: Self-supervised vIsion Transformer**](https://arxiv.org/abs/2104.03602)[@sit], studied a mix of three semi-supervised tasks (rotation prediction, image reconstruction, and a contrastive one) that, when combined, allow Vision Transformers to perform well on downstream tasks.
 
-*<p style="text-align: center;">![](https://i.imgur.com/BYHT0ze.png =640x) 
-The Self-supervised vIsion Transformer.</p>*
+```{r out.width = "100%", fig.align="center", fig.cap = "The Self-supervised vIsion Transformer architecture."}
+knitr::include_graphics("sit.png")
+```
 
 ## Vision Transformers in medical research
 
@@ -356,8 +364,9 @@ Vision Transformers have recently been applied to medical research, mainly in se
 
 In [**Medical Transformer: Gated Axial-Attention for Medical Image Segmentation**](https://arxiv.org/abs/2102.10662)[@medt], the authors proposed the use of two branches, a shallower one, operating on the global context of the image, and a deeper one, operating locally on patches. The basic building block used for the model, which they named Medical Transformer (MedT), is (gated) axial self-attention[@axial]. The authors obtained improvements over baselines on several medical segmentation tasks.
 
-*<p style="text-align: center;">![](https://i.imgur.com/c6jwSOE.png =640x)
-The Medical Transformer.</p>*
+```{r out.width = "100%", fig.align="center", fig.cap = "The Medical Transformer architecture."}
+knitr::include_graphics("medt.png")
+```
 
 [**UNETR: Transformers for 3D Medical Image Segmentation**](https://arxiv.org/abs/2103.10504)[@unetr] adapted ViTs for 3D medical segmentation tasks. The authors showed that a simple adaption was sufficient to improve over baselines on several 3D segmentation tasks. 
 
@@ -375,8 +384,9 @@ The resulting models (called Spatio and Temporal Transformers, or STAMs) outperf
 
 [**ViViT: A Video Vision Transformer**](https://arxiv.org/abs/2103.15691)[@vivit] discusses several approaches to adapt ViTs to video, and found the use of *tubelet embeddings*, linear projections of spatio-temporal tubes, to be most effective.
 
-*<p style="text-align: center;">![](https://i.imgur.com/a3TmRBK.png =640x)
-Tubelet embeddings in ViViT.</p>*
+```{r out.width = "100%", fig.align="center", fig.cap = "Tubelet embeddings in ViViT."}
+knitr::include_graphics("vivit.png")
+```
 
 The positional embeddings are initialized by temporally repeating positional embeddings obtained from pre-trained ViTs. Tubelet embeddings are instead initialized using "central frame initialization", where the temporally central frame's embedding is initialized using pre-trained ViT patch embeddings, while the rest are initialized with zeros.
 

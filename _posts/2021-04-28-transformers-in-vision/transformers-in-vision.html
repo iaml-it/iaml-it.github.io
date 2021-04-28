@@ -189,6 +189,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <meta name="citation_reference" content="citation_title=VATT: Transformers for multimodal self-supervised learning from raw video, audio and text;citation_publication_date=2021;citation_volume=abs/2104.11178;citation_author=Hassan Akbari;citation_author=Liangzhe Yuan;citation_author=Rui Qian;citation_author=Wei-Hong Chuang;citation_author=Shih-Fu Chang;citation_author=Yin Cui;citation_author=Boqing Gong"/>
   <meta name="citation_reference" content="citation_title=Perceiver: General perception with iterative attention;citation_publication_date=2021;citation_volume=abs/2103.03206;citation_author=Andrew Jaegle;citation_author=Felix Gimeno;citation_author=Andrew Brock;citation_author=Andrew Zisserman;citation_author=Oriol Vinyals;citation_author=João Carreira"/>
   <meta name="citation_reference" content="citation_title=An empirical study of training self-supervised vision transformers;citation_publication_date=2021;citation_volume=abs/2104.02057;citation_author=Xinlei Chen;citation_author=Saining Xie;citation_author=Kaiming He"/>
+  <meta name="citation_reference" content="citation_title=Revisiting ResNets: Improved training and scaling strategies;citation_publication_date=2021;citation_volume=abs/2103.07579;citation_author=Irwan Bello;citation_author=William Fedus;citation_author=Xianzhi Du;citation_author=Ekin D. Cubuk;citation_author=Aravind Srinivas;citation_author=Tsung-Yi Lin;citation_author=Jonathon Shlens;citation_author=Barret Zoph"/>
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
@@ -197,7 +198,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["bibliography.bib","cait.png","conditional.png","convit.png","deepvit.png","deit.png","imagenet1k.html","imagenet21k.html","nature.csl","tnt.png","transformers-in-vision_files/anchor-4.2.2/anchor.min.js","transformers-in-vision_files/bowser-1.9.3/bowser.min.js","transformers-in-vision_files/distill-2.2.21/template.v2.js","transformers-in-vision_files/header-attrs-2.7/header-attrs.js","transformers-in-vision_files/jquery-1.11.3/jquery.min.js","transformers-in-vision_files/popper-2.6.0/popper.min.js","transformers-in-vision_files/tippy-6.2.7/tippy-bundle.umd.min.js","transformers-in-vision_files/tippy-6.2.7/tippy-light-border.css","transformers-in-vision_files/tippy-6.2.7/tippy.css","transformers-in-vision_files/tippy-6.2.7/tippy.umd.min.js","transformers-in-vision_files/webcomponents-2.0.0/webcomponents.js","ViT.gif","ViT.png"]}
+  {"type":"character","attributes":{},"value":["bibliography.bib","cait.png","conditional.png","convit.png","crossvit.png","cvt.png","deepvit.png","deit.png","halonet.png","imagenet1k.html","imagenet21k.html","medt.png","nature.csl","pvt.png","random.png","sit.png","sovit.png","swin1.png","swin2.png","t2t.png","tnt.png","transformers-in-vision_files/anchor-4.2.2/anchor.min.js","transformers-in-vision_files/bowser-1.9.3/bowser.min.js","transformers-in-vision_files/distill-2.2.21/template.v2.js","transformers-in-vision_files/header-attrs-2.7/header-attrs.js","transformers-in-vision_files/jquery-1.11.3/jquery.min.js","transformers-in-vision_files/popper-2.6.0/popper.min.js","transformers-in-vision_files/tippy-6.2.7/tippy-bundle.umd.min.js","transformers-in-vision_files/tippy-6.2.7/tippy-light-border.css","transformers-in-vision_files/tippy-6.2.7/tippy.css","transformers-in-vision_files/tippy-6.2.7/tippy.umd.min.js","transformers-in-vision_files/webcomponents-2.0.0/webcomponents.js","vil.png","ViT.gif","ViT.png","vivit.png"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1689,7 +1690,6 @@ Figure 6: ViT (left), late class token ViT (center) and CaiT (right).
 <h3 id="convolutional-insights">Convolutional insights</h3>
 <p><a href="https://arxiv.org/abs/2103.10697"><strong>ConViT: Improving Vision Transformers with Soft Convolutional Inductive Biases</strong></a><span class="citation" data-cites="convit"><sup><a href="#ref-convit" role="doc-biblioref">40</a></sup></span> investigated the exciting possibility of initializing self-attention blocks with soft convolutional biases. Basing their work on studies regarding the <a href="https://openreview.net/forum?id=HJlnC1rKPB">theoretical relationship between self-attention and convolutional layers</a><span class="citation" data-cites="relationship"><sup><a href="#ref-relationship" role="doc-biblioref">41</a></sup></span>, the authors introduced Gated Positional Self-Attention (GPSA), a variant of self-attention which is characterized by the possibility of being initialized with a locality bias.</p>
 <p>More precisely, the initialization of a GPSA block is parameterized by a head-specific center of attention (the position to which the head pays most attention to, given the query patch) and a locality strength (which determines how focused every head is around its center of attention). GPSA blocks also employ a gating mechanism to better balance content and positional information. By appropriately setting the centers of attention and the locality strength of GPSA blocks, the model can compete with CNNs in the low data regime and at the same time enjoy ViT-like expressive power in large data regimes.</p>
-<center>
 <div class="layout-chunk" data-layout="l-body">
 <div class="figure"><span id="fig:unnamed-chunk-7"></span>
 <img src="convit.png" alt="Input image (top left), attention maps of an untrained SA block (top right) and GPSA blocks (center and bottom)." width="100%" />
@@ -1698,7 +1698,6 @@ Figure 7: Input image (top left), attention maps of an untrained SA block (top r
 </p>
 </div>
 </div>
-</center>
 <p>The authors demonstrated the effectiveness of this elegant approach through an empirical study comparing DeiTs to the resulting models, which they named Convolutional Vision Transformers (ConViTs): on ImageNet ConViTs enjoy progressively superior performance as the sample size is diminished while retaining DeiT-like performance at full sample size.</p>
 <p>Two more papers exploring the application of convolutional insights to Vision Transformers are <a href="https://arxiv.org/abs/2103.11816"><strong>Incorporating Convolution Designs into Visual Transformers</strong></a><span class="citation" data-cites="ceit"><sup><a href="#ref-ceit" role="doc-biblioref">42</a></sup></span> and <a href="https://arxiv.org/abs/2104.05707"><strong>LocalViT: Bringing Locality to Vision Transformers</strong></a><span class="citation" data-cites="localvit"><sup><a href="#ref-localvit" role="doc-biblioref">43</a></sup></span>.</p>
 <p>The first paper has three main contributions: * The Image-to-Tokens (I2T) stem, substituting ViT’s convolutional stem and characterized by the addition of a max-pooling operation followed by batch normalization. * The Locally enhanced Feedforward block, substituting ViT’s feedforward block and characterized by the use of depthwise convolutions and batch normalization. * The Layer-wise Class-Token Attention, which is applied at the end of the network and attends unidirectionally to all class tokens throughout the network.</p>
@@ -1708,39 +1707,43 @@ Figure 7: Input image (top left), attention maps of an untrained SA block (top r
 <h3 id="the-importance-of-hierarchy">The importance of Hierarchy</h3>
 <p>Several papers have studied the application of a hierarchical structure to Vision Transformers.</p>
 <p><a href="https://arxiv.org/abs/2101.11986"><strong>Tokens-to-Token ViT: Training Vision Transformers from Scratch on ImageNet</strong></a><span class="citation" data-cites="t2t"><sup><a href="#ref-t2t" role="doc-biblioref">44</a></sup></span> introduced the Token-to-Token module (T2T), a module that reshapes the input sequence to a 2D structure, applies a soft split (allowing overlapping patches), and flattens the resulting patches. By adjusting the patch size used in the module, the length of the token sequences diminishes progressively throughout the network.</p>
-*
-<p style="text-align: center;">
-<img src="https://i.imgur.com/sAnm4Ea.png%20=640x" /> The Token-to-Token module
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span id="fig:unnamed-chunk-8"></span>
+<img src="t2t.png" alt="The Token-to-Token module architecture." width="100%" />
+<p class="caption">
+Figure 8: The Token-to-Token module architecture.
 </p>
-<ul>
-<li></li>
-</ul>
+</div>
+</div>
 <p>The authors obtained favorable results, with performance comparable to that of <a href="https://ieeexplore.ieee.org/document/8578572">MobileNets</a><span class="citation" data-cites="mobile"><sup><a href="#ref-mobile" role="doc-biblioref">45</a></sup></span>.</p>
 <p><a href="https://arxiv.org/abs/2102.12122"><strong>Pyramid Vision Transformer: A Versatile Backbone for Dense Prediction without Convolutions</strong></a><span class="citation" data-cites="pvt"><sup><a href="#ref-pvt" role="doc-biblioref">46</a></sup></span> introduced a variant of Self-Attention called spatial-reduction attention (SRA), characterized by spatial reduction of both keys and values. By applying SRA at the end of several stages, the spatial dimensions of the feature map slowly decrease throughout the model. The resulting models, called Pyramid Vision Transformers (PVTs), can deal with a variety of tasks, including dense prediction, object detection, and semantic segmentation, where high-resolution images are typical.</p>
-*
-<p style="text-align: center;">
-<img src="https://i.imgur.com/zduuhP7.png%20=640x" /> The Pyramid Vision Transformer.
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-9"></span>
+<img src="pvt.png" alt="The Pyramid Vision Transformer." width="100%" />
+<p class="caption">
+Figure 9: The Pyramid Vision Transformer.
 </p>
-<ul>
-<li></li>
-</ul>
+</div>
+</div>
 <p><a href="https://arxiv.org/abs/2103.10619"><strong>Scalable Visual Transformers with Hierarchical Pooling</strong></a><span class="citation" data-cites="hvt"><sup><a href="#ref-hvt" role="doc-biblioref">47</a></sup></span> explored the use of max-pooling to diminish the sequence length progressively. The authors also replaced the class token used in ViT with a final global average pooling layer. The resulting models, called Hierarchical Vision Transformers (HVTs), are trained with the DeiT recipe and scaled up (in the embedding dimension and number of heads) to have a comparable computational cost to DeiTs, achieving gains in the low (sub <span class="math inline">\(5\)</span>) GFLOPs regime.</p>
 <p><a href="https://arxiv.org/abs/2103.14030"><strong>Swin Transformer: Hierarchical Vision Transformer using Shifted Windows</strong></a><span class="citation" data-cites="swin"><sup><a href="#ref-swin" role="doc-biblioref">48</a></sup></span> suggested a different route: use local self-attention inside (non-overlapping, local) windows, allow cross-window communication through so-called <em>shifted window partitioning</em>, and produce a hierarchical representation by progressively merging the windows themselves.</p>
-*
-<p style="text-align: center;">
-<img src="https://i.imgur.com/4PhzPKC.png%20=640x" /> The Swin Transformer shifted window partitioning.
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-10"></span>
+<img src="swin2.png" alt="The Swin Transformer shifted window partitioning procedure." width="100%" />
+<p class="caption">
+Figure 10: The Swin Transformer shifted window partitioning procedure.
 </p>
-<ul>
-<li></li>
-</ul>
+</div>
+</div>
 <p>In the last stage of the network, all local windows have been merged, resulting in blocks effectively using global self-attention on a feature map whose spatial dimensions have been significantly decreased. It’s worth noting that this approach scales linearly with image size.</p>
-*
-<p style="text-align: center;">
-<img src="https://i.imgur.com/L6bWBM0.png%20=640x" /> Swin Transformer (left) and ViT (right). Attention is applied on patches (black) inside windows (red).
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-11"></span>
+<img src="swin1.png" alt="Swin Transformer (left) and ViT (right). Attention is applied on patches (black) inside windows (red)." width="100%" />
+<p class="caption">
+Figure 11: Swin Transformer (left) and ViT (right). Attention is applied on patches (black) inside windows (red).
 </p>
-<ul>
-<li></li>
-</ul>
+</div>
+</div>
 <p>The authors also reported positive results applying T5-style relative positional bias in attention blocks and obtained promising results both on ImageNet and ImageNet-21k, as well as in object detection and semantic segmentation tasks.</p>
 <p><a href="https://arxiv.org/abs/2103.16302"><strong>Rethinking Spatial Dimensions of Vision Transformers</strong></a><span class="citation" data-cites="pit"><sup><a href="#ref-pit" role="doc-biblioref">49</a></sup></span> introduced a novel pooling layer, characterized by a depthwise convolution (for patch embeddings) and a fully connected layer (for the class token). This simple change allowed the models, named Pooling-based vIsion Transformers (PiTs), to outperform vanilla Vision Transformers in the ImageNet data regime.</p>
 <p><a href="https://arxiv.org/abs/2104.01136"><strong>LeViT: a Vision Transformer in ConvNet’s Clothing for Faster Inference</strong></a><span class="citation" data-cites="levit"><sup><a href="#ref-levit" role="doc-biblioref">50</a></sup></span> studied a hybrid architecture characterized by a longer convolutional stem and shrink attention blocks that progressively diminish the spatial dimensions of the feature maps throughout the network. The authors also proposed the use of global average pooling instead of the class token, the injection of positional information through attention bias, and the addition of a <a href="https://arxiv.org/abs/1606.08415">GELU activation</a><span class="citation" data-cites="gelu"><sup><a href="#ref-gelu" role="doc-biblioref">51</a></sup></span> in the attention block.</p>
@@ -1749,13 +1752,14 @@ Figure 7: Input image (top left), attention maps of an untrained SA block (top r
 <p><a href="https://arxiv.org/abs/2103.14899"><strong>CrossViT: Cross-Attention Multi-Scale Vision Transformer for Image Classification</strong></a><span class="citation" data-cites="crossvit"><sup><a href="#ref-crossvit" role="doc-biblioref">52</a></sup></span> proposed the use of multi-scale features by adapting the Vision Transformer to have two branches: * A large (or primary) one characterized by large patch size, deep transformer encoder, and wide embedding dimension. * A small (or complementary) one characterized by smaller patch size, shallower encoder, and narrower embedding dimension.</p>
 <p>The branches employ two separate class tokens. Late in the network (after a separate set of positional embeddings is added), cross-branch communication is established through the use of Cross-Attention Fusion blocks.</p>
 <p>In particular, inside cross-attention fusion blocks, class tokens are concatenated to the patch embeddings of the other branch and processed by attention before being returned to their respective branch.</p>
-*
-<p style="text-align: center;">
-<img src="https://i.imgur.com/tkdBf8X.png%20=480x" /> The Cross-Attention fusion layer for the large branch.
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-12"></span>
+<img src="crossvit.png" alt="The Cross-Attention fusion layer for the large branch." width="100%" />
+<p class="caption">
+Figure 12: The Cross-Attention fusion layer for the large branch.
 </p>
-<ul>
-<li></li>
-</ul>
+</div>
+</div>
 <p>The output of MLP heads based on the large and small branches tokens is then added together to generate the model’s logits.</p>
 <p>The resulting models, which the authors named CrossViTs, are trained with the DeiT recipe and enjoy significant performance boosts, achieving better performance than DeiTs twice as large and twice as computationally expensive.</p>
 <h3 id="integrating-convolutions-in-attention">Integrating convolutions in attention</h3>
@@ -1764,48 +1768,52 @@ Figure 7: Input image (top left), attention maps of an untrained SA block (top r
 <li>The Convolutional Token Embedding, a module characterized by a strided convolution and inserted at the beginning of every stage.</li>
 <li>The Convolutional Projection(s) in the attention blocks. These projections, implemented through depthwise separable convolutions, allow queries, keys, and values to be influenced by neighboring tokens. Further, larger strides for keys and values diminish the tokens spatial dimensions, decreasing the associated parameters count and computational cost.</li>
 </ul>
-*
-<p style="text-align: center;">
-<img src="https://i.imgur.com/ka08RVo.png%20=640x" /> The (strided) Convolutional Projections.
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-13"></span>
+<img src="cvt.png" alt="The (strided) Convolutional Projections." width="100%" />
+<p class="caption">
+Figure 13: The (strided) Convolutional Projections.
 </p>
-<ul>
-<li></li>
-</ul>
+</div>
+</div>
 <p>These two features allow the model to progressively reduce the tokens feature and spatial dimensions, allowing CvTs to adopt a hierarchical multi-stage architecture.</p>
 <p>It’s worth noting that CvTs do not employ positional embeddings since positional information is retained through the use of convolutions both in the embedding layers as well as in the attention blocks.</p>
 <p>The authors adopted the original ViT training recipe and achieved competitive performance when training CvTs on ImageNet. The largest model presented (CvT-W24), once pre-trained on ImageNet-21k, obtained a stunning <span class="math inline">\(87.7\%\)</span> top-1 accuracy, outperforming BiT-L (an ensemble of CNNs pre-trained on <span class="math inline">\(20\)</span> times more data) with a fraction of parameters and compute.</p>
 <p><a href="https://arxiv.org/abs/2103.15358"><strong>Multi-Scale Vision Longformer: A New Vision Transformer for High-Resolution Image Encoding</strong></a><span class="citation" data-cites="vil"><sup><a href="#ref-vil" role="doc-biblioref">55</a></sup></span> introduced a 2D version of <a href="https://arxiv.org/abs/2004.05150">Longformer</a><span class="citation" data-cites="long"><sup><a href="#ref-long" role="doc-biblioref">56</a></sup></span>, which the authors call Vision Longformer. Conceptually, it is characterized by two different sets of tokens: a set of global tokens, allowed to attend to all tokens, and local tokens, only allowed to attend to global tokens and tokens spatially close to them.</p>
-*
-<p style="text-align: center;">
-<img src="https://i.imgur.com/CStRpbb.png%20=480x" /> Global and local tokens in Multi-Scale Vision Longformers.
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-14"></span>
+<img src="vil.png" alt="Global and local tokens in Multi-Scale Vision Longformers." width="100%" />
+<p class="caption">
+Figure 14: Global and local tokens in Multi-Scale Vision Longformers.
 </p>
-<ul>
-<li></li>
-</ul>
+</div>
+</div>
 <p>It’s worth noting that, at least in vision-only tasks, global tokens are discarded at the end of every attention block (while local tokens are reshaped and passed to the next one), since they have at that point already fulfilled their role of allowing efficient communication between spatially distant tokens.</p>
 <p>The authors adopted DeiT-style training and achieved impressive parameter and FLOP efficiency.</p>
 <h3 id="haloing-and-strided-local-self-attention">Haloing and Strided local Self-Attention</h3>
 <p><a href="https://arxiv.org/abs/2103.12731"><strong>Scaling Local Self-Attention for Parameter Efficient Visual Backbones</strong></a><span class="citation" data-cites="halonet"><sup><a href="#ref-halonet" role="doc-biblioref">57</a></sup></span> builds on top of SASA models, by developing a local self-attention-only family of models made more efficient by the newly introduced haloing operation.</p>
 <p>More precisely, the authors introduced a novel strategy called Blocked Self-Attention: input is first divided into blocks (which will be used as queries), and neighboring pixels are banded together and padded, in an operation denominated haloing, to generate keys and values. Finally, attention is applied.</p>
-*
-<p style="text-align: center;">
-<img src="https://i.imgur.com/ejTpcGw.png%20=640x" /> Blocked local Self-Attention as used in HaloNets.
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-15"></span>
+<img src="halonet.png" alt="Blocked local Self-Attention as used in HaloNets." width="100%" />
+<p class="caption">
+Figure 15: Blocked local Self-Attention as used in HaloNets.
 </p>
-<ul>
-<li></li>
-</ul>
+</div>
+</div>
 <p>It’s worth noting that this operation causes layers not to be translationally equivariant, but the authors took this route to obtain higher hardware utilization.</p>
 <p>The network assumes a hierarchical structure thanks to a strided version of self-attention that is applied at the end of every stage (thus replacing SASA models post-attention average pooling).</p>
 <p>The resulting models, called HaloNets, achieved extremely high parameter efficiency, slightly surpassing EfficientNets, a feat not obtained by any other model thus far. It’s worth, however, noting that HaloNets have a longer step-time, particularly when using larger configurations.</p>
 <h3 id="second-order-pooling">Second-order pooling</h3>
 <p><a href="https://arxiv.org/abs/2104.10935"><strong>So-ViT: Mind Visual Tokens for Vision Transformer</strong></a><span class="citation" data-cites="sovit"><sup><a href="#ref-sovit" role="doc-biblioref">58</a></sup></span> recently proposed the use of second-order pooling to extract high-level information from visual tokens (that is all tokens apart from the class one). The model’s logits are finally obtained by summing up the output of two separate linear heads, one applied to the class token, and one applied to the pooled features.</p>
-*
-<p style="text-align: center;">
-<img src="https://i.imgur.com/nGA1Bs3.png%20=480x" /> So-ViT architecture.
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-16"></span>
+<img src="sovit.png" alt="The So-ViT architecture." width="100%" />
+<p class="caption">
+Figure 16: The So-ViT architecture.
 </p>
-<ul>
-<li></li>
-</ul>
+</div>
+</div>
 <p>The resulting models, named Second-order ViTs (So-ViTs), are trained with an expanded DeiT recipe, and obtain competitive results.</p>
 <h3 id="comparison-on-image-classification">Comparison on Image Classification</h3>
 <p>Before continuing, we recap the reported performance of most models presented up to this point.</p>
@@ -1818,65 +1826,69 @@ Figure 7: Input image (top left), attention maps of an untrained SA block (top r
 <p><iframe src="imagenet21k.html" width="100%" height="640" scrolling="no" seamless="seamless" frameBorder="0"></iframe></p>
 </div>
 <p>It’s worth keeping in mind that FLOP use and parameter count are not necessarily representative of latency or memory consumption.</p>
-<p>As the recent ResNet-RS paper [<a href="https://arxiv.org/abs/2103.07579">Bello et al.; 2021</a>] explains, “in custom hardware architectures (e.g. TPUs and GPUs), operations are often bounded by memory access costs and have different levels of optimization on modern matrix multiplication units.” For these reasons, FLOPs are a particularly poor proxy for latency time.</p>
-<p>Similarly, the number of parameters is a poor indicator of memory consumption during training. Again from the ResNet-RS paper, “parameter count does not necessarily dictate memory consumption during training because memory is often dominated by the size of the activations” which have to be stored to execute the backpropagation algorithm. “At inference, activations can be discarded and parameter count is a better proxy for actual memory consumption.”</p>
+<p>As the recent <a href="https://arxiv.org/abs/2103.07579">ResNet-RS paper</a><span class="citation" data-cites="resnetrs"><sup><a href="#ref-resnetrs" role="doc-biblioref">60</a></sup></span> explains, <em>“in custom hardware architectures (e.g. TPUs and GPUs), operations are often bounded by memory access costs and have different levels of optimization on modern matrix multiplication units.”</em> For these reasons, FLOPs are a particularly poor proxy for latency time.</p>
+<p>Similarly, the number of parameters is a poor indicator of memory consumption during training. Again from the ResNet-RS paper, <em>“parameter count does not necessarily dictate memory consumption during training because memory is often dominated by the size of the activations”</em> which have to be stored to execute the backpropagation algorithm. <em>“At inference, activations can be discarded and parameter count is a better proxy for actual memory consumption.”</em></p>
 <p>ResNet-RS models are a great example of this issue: an ResNet-RS has respectively <span class="math inline">\(3{-}4\times\)</span> and <span class="math inline">\(2\times\)</span> the amount of parameters and FLOPs of a similarly accurate EfficientNet, yet it is <span class="math inline">\(3\times\)</span> as fast and consumes about <span class="math inline">\(2\times\)</span> less memory. For these reasons, it would be preferable for authors of new studies to include, together with parameter count and FLOP use, also latency and memory usage measurements.</p>
 <h2 id="robustness-equivariance">Robustness &amp; Equivariance</h2>
-<p><a href="https://arxiv.org/abs/2103.14586"><strong>Understanding Robustness of Transformers for Image Classification</strong></a><span class="citation" data-cites="robustness"><sup><a href="#ref-robustness" role="doc-biblioref">60</a></sup></span> studied the robustness of Vision Transformers to input, model, and adversarial perturbations. The authors found Vision Transformers to have an advantage compared to CNNs of similar size for both input and model perturbations (particularly in large data regimes). However, for some kinds of adversarial attacks, Vision Transformers were found to be more susceptible, at least for small sample sizes.</p>
+<p><a href="https://arxiv.org/abs/2103.14586"><strong>Understanding Robustness of Transformers for Image Classification</strong></a><span class="citation" data-cites="robustness"><sup><a href="#ref-robustness" role="doc-biblioref">61</a></sup></span> studied the robustness of Vision Transformers to input, model, and adversarial perturbations. The authors found Vision Transformers to have an advantage compared to CNNs of similar size for both input and model perturbations (particularly in large data regimes). However, for some kinds of adversarial attacks, Vision Transformers were found to be more susceptible, at least for small sample sizes.</p>
 <p>The authors also found vanilla Vision Transformers highly redundant, a finding first reported in DeepViTs, suggesting the possible use of heavy pruning as a path to more efficient models.</p>
-<p>In <a href="https://openreview.net/forum?id=JkfYjnOEo6M"><strong>Group Equivariant Stand-Alone Self-Attention For Vision</strong></a><span class="citation" data-cites="gsa"><sup><a href="#ref-gsa" role="doc-biblioref">61</a></sup></span>, the authors developed a self-attention formulation equivariant to arbitrary symmetry groups. The resulting models, called Group Self-Attention Networks (GSA-Nets), enjoy superior parameter efficiency, although not quite reaching that of comparable-size equivariant CNNs.</p>
+<p>In <a href="https://openreview.net/forum?id=JkfYjnOEo6M"><strong>Group Equivariant Stand-Alone Self-Attention For Vision</strong></a><span class="citation" data-cites="gsa"><sup><a href="#ref-gsa" role="doc-biblioref">62</a></sup></span>, the authors developed a self-attention formulation equivariant to arbitrary symmetry groups. The resulting models, called Group Self-Attention Networks (GSA-Nets), enjoy superior parameter efficiency, although not quite reaching that of comparable-size equivariant CNNs.</p>
 <h2 id="vision-transformers-in-self-supervised-learning">Vision Transformers in self-supervised learning</h2>
-<p>Building on top of previous studies (<a href="https://openai.com/blog/image-gpt/">iGPT</a><span class="citation" data-cites="igpt"><sup><a href="#ref-igpt" role="doc-biblioref">62</a></sup></span> and <a href="https://openreview.net/pdf?id=YicbFdNTTy#subsubsection.B.1.2">masked patch prediction in the Vision Transformers paper</a><span class="citation" data-cites="vit"><sup><a href="#ref-vit" role="doc-biblioref">19</a></sup></span>), two papers have investigated self-supervised approaches using Vision Transformers.</p>
-<p><a href="https://arxiv.org/abs/2104.02057"><strong>An Empirical Study of Training Self-Supervised Vision Transformers</strong></a><span class="citation" data-cites="random"><sup><a href="#ref-random" role="doc-biblioref">63</a></sup></span> identified an instability encountered during self-supervised training, causing performance degradation, particularly at large batch sizes. The authors propose a curious trick: a fixed, random patch projection, unlike normal ViTs where patch embeddings are learned just like the rest of the network.</p>
-*
-<p style="text-align: center;">
-<img src="https://i.imgur.com/6LA44IF.png%20=480x" />) A comparison of training stability using learned and random patch embeddings.
+<p>Building on top of previous studies (<a href="https://openai.com/blog/image-gpt/">iGPT</a><span class="citation" data-cites="igpt"><sup><a href="#ref-igpt" role="doc-biblioref">63</a></sup></span> and <a href="https://openreview.net/pdf?id=YicbFdNTTy#subsubsection.B.1.2">masked patch prediction in the Vision Transformers paper</a><span class="citation" data-cites="vit"><sup><a href="#ref-vit" role="doc-biblioref">19</a></sup></span>), two papers have investigated self-supervised approaches using Vision Transformers.</p>
+<p><a href="https://arxiv.org/abs/2104.02057"><strong>An Empirical Study of Training Self-Supervised Vision Transformers</strong></a><span class="citation" data-cites="random"><sup><a href="#ref-random" role="doc-biblioref">64</a></sup></span> identified an instability encountered during self-supervised training, causing performance degradation, particularly at large batch sizes. The authors propose a curious trick: a fixed, random patch projection, unlike normal ViTs where patch embeddings are learned just like the rest of the network.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-19"></span>
+<img src="random.png" alt="A comparison of training stability using learned and random patch embeddings." width="100%" />
+<p class="caption">
+Figure 17: A comparison of training stability using learned and random patch embeddings.
 </p>
-<ul>
-<li></li>
-</ul>
+</div>
+</div>
 <p>The authors showed that, by coupling this trick with the use of batch normalization in MLP blocks (instead of Layer Normalization), self-supervised training of Vision Transformers could be made more stable, allowing the models to achieve superior performance on several downstream tasks.</p>
 <p>Unfortunately, the authors also noted that this approach was not sufficient: the instability is alleviated but not solved, particularly at large learning rates.</p>
-<p><a href="https://arxiv.org/abs/2104.03602"><strong>SiT: Self-supervised vIsion Transformer</strong></a><span class="citation" data-cites="sit"><sup><a href="#ref-sit" role="doc-biblioref">64</a></sup></span>, studied a mix of three semi-supervised tasks (rotation prediction, image reconstruction, and a contrastive one) that, when combined, allow Vision Transformers to perform well on downstream tasks.</p>
-*
-<p style="text-align: center;">
-<img src="https://i.imgur.com/BYHT0ze.png%20=640x" /> The Self-supervised vIsion Transformer.
+<p><a href="https://arxiv.org/abs/2104.03602"><strong>SiT: Self-supervised vIsion Transformer</strong></a><span class="citation" data-cites="sit"><sup><a href="#ref-sit" role="doc-biblioref">65</a></sup></span>, studied a mix of three semi-supervised tasks (rotation prediction, image reconstruction, and a contrastive one) that, when combined, allow Vision Transformers to perform well on downstream tasks.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-20"></span>
+<img src="sit.png" alt="The Self-supervised vIsion Transformer architecture." width="100%" />
+<p class="caption">
+Figure 18: The Self-supervised vIsion Transformer architecture.
 </p>
-<ul>
-<li></li>
-</ul>
+</div>
+</div>
 <h2 id="vision-transformers-in-medical-research">Vision Transformers in medical research</h2>
 <p>Vision Transformers have recently been applied to medical research, mainly in segmentation tasks and diagnosis prediction ones.</p>
-<p><a href="https://arxiv.org/abs/2102.04306"><strong>TransUNet: Transformers Make Strong Encoders for Medical Image Segmentation</strong></a><span class="citation" data-cites="transunet"><sup><a href="#ref-transunet" role="doc-biblioref">65</a></sup></span> explored using a hybrid CNN-ViT encoder in an UNet-style architecture they call TransUNet. The authors reported favorable results in several segmentation tasks, especially when using a cascaded upsampler to obtain the final segmentation mask.</p>
-<p>In <a href="https://arxiv.org/abs/2102.10662"><strong>Medical Transformer: Gated Axial-Attention for Medical Image Segmentation</strong></a><span class="citation" data-cites="medt"><sup><a href="#ref-medt" role="doc-biblioref">66</a></sup></span>, the authors proposed the use of two branches, a shallower one, operating on the global context of the image, and a deeper one, operating locally on patches. The basic building block used for the model, which they named Medical Transformer (MedT), is (gated) axial self-attention<span class="citation" data-cites="axial"><sup><a href="#ref-axial" role="doc-biblioref">16</a></sup></span>. The authors obtained improvements over baselines on several medical segmentation tasks.</p>
-*
-<p style="text-align: center;">
-<img src="https://i.imgur.com/c6jwSOE.png%20=640x" /> The Medical Transformer.
+<p><a href="https://arxiv.org/abs/2102.04306"><strong>TransUNet: Transformers Make Strong Encoders for Medical Image Segmentation</strong></a><span class="citation" data-cites="transunet"><sup><a href="#ref-transunet" role="doc-biblioref">66</a></sup></span> explored using a hybrid CNN-ViT encoder in an UNet-style architecture they call TransUNet. The authors reported favorable results in several segmentation tasks, especially when using a cascaded upsampler to obtain the final segmentation mask.</p>
+<p>In <a href="https://arxiv.org/abs/2102.10662"><strong>Medical Transformer: Gated Axial-Attention for Medical Image Segmentation</strong></a><span class="citation" data-cites="medt"><sup><a href="#ref-medt" role="doc-biblioref">67</a></sup></span>, the authors proposed the use of two branches, a shallower one, operating on the global context of the image, and a deeper one, operating locally on patches. The basic building block used for the model, which they named Medical Transformer (MedT), is (gated) axial self-attention<span class="citation" data-cites="axial"><sup><a href="#ref-axial" role="doc-biblioref">16</a></sup></span>. The authors obtained improvements over baselines on several medical segmentation tasks.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-21"></span>
+<img src="medt.png" alt="The Medical Transformer architecture." width="100%" />
+<p class="caption">
+Figure 19: The Medical Transformer architecture.
 </p>
-<ul>
-<li></li>
-</ul>
-<p><a href="https://arxiv.org/abs/2103.10504"><strong>UNETR: Transformers for 3D Medical Image Segmentation</strong></a><span class="citation" data-cites="unetr"><sup><a href="#ref-unetr" role="doc-biblioref">67</a></sup></span> adapted ViTs for 3D medical segmentation tasks. The authors showed that a simple adaption was sufficient to improve over baselines on several 3D segmentation tasks.</p>
+</div>
+</div>
+<p><a href="https://arxiv.org/abs/2103.10504"><strong>UNETR: Transformers for 3D Medical Image Segmentation</strong></a><span class="citation" data-cites="unetr"><sup><a href="#ref-unetr" role="doc-biblioref">68</a></sup></span> adapted ViTs for 3D medical segmentation tasks. The authors showed that a simple adaption was sufficient to improve over baselines on several 3D segmentation tasks.</p>
 <h2 id="vision-transformers-for-video-recognition">Vision Transformers for Video Recognition</h2>
-<p><a href="https://arxiv.org/abs/2102.00719"><strong>Video Transformer Network</strong></a><span class="citation" data-cites="vtn"><sup><a href="#ref-vtn" role="doc-biblioref">68</a></sup></span> (VTN) proposed the use of a pre-trained 2D spatial backbone (the authors experiment with both CNN-based and ViT-based feature extractors) combined with a Transformer (in this case, a Longformer) operating on the extracted feature maps. The authors showed that this simple approach was competitive with baselines such as <a href="https://arxiv.org/abs/1812.03982">SlowFast</a><span class="citation" data-cites="slowfast"><sup><a href="#ref-slowfast" role="doc-biblioref">69</a></sup></span>.</p>
-<p><a href="https://arxiv.org/abs/2102.05095"><strong>Is Space-Time Attention All You Need for Video Understanding</strong></a><span class="citation" data-cites="timesformer"><sup><a href="#ref-timesformer" role="doc-biblioref">70</a></sup></span> introduced TimeSformer, an adaption of ViTs to video. After exploring several possible attention variants, the authors proposed one deemed Divided Space-Time attention. In this approach, frames are first divided into patches and linearly embedded, then fed to a single transformer encoder. Every encoder layer has two attention blocks applied consecutively: the first one on patch embeddings at the same location but in different frames (temporal attention), the second on patch embeddings in the same frame (spatial attention).</p>
-<p>The authors adopted ImageNet pretraining for spatial attention blocks and showed that the resulting models achieved state of the art, outperforming previous baselines on standard datasets such as <a href="https://arxiv.org/abs/1705.06950">Kinetics-400</a><span class="citation" data-cites="kinetics"><sup><a href="#ref-kinetics" role="doc-biblioref">71</a></sup></span>.</p>
-<p><a href="https://arxiv.org/abs/2103.13915"><strong>An Image is Worth 16x16 Words, What is a Video Worth?</strong></a><span class="citation" data-cites="videoworth"><sup><a href="#ref-videoworth" role="doc-biblioref">72</a></sup></span> proposed using a Vision Transformer to model the relationship between intra-frame patches, followed by a (temporal) Transformer encoder, modeling inter-frame relationships. It is conceptually similar to a VTN with a ViT-based spatial backbone.</p>
-<p>The resulting models (called Spatio and Temporal Transformers, or STAMs) outperformed strong baselines such as <a href="https://arxiv.org/abs/2004.04730">X3D</a><span class="citation" data-cites="x3d"><sup><a href="#ref-x3d" role="doc-biblioref">73</a></sup></span> in the accuracy/FLOPs trade-off.</p>
-<p><a href="https://arxiv.org/abs/2103.15691"><strong>ViViT: A Video Vision Transformer</strong></a><span class="citation" data-cites="vivit"><sup><a href="#ref-vivit" role="doc-biblioref">74</a></sup></span> discusses several approaches to adapt ViTs to video, and found the use of <em>tubelet embeddings</em>, linear projections of spatio-temporal tubes, to be most effective.</p>
-*
-<p style="text-align: center;">
-<img src="https://i.imgur.com/a3TmRBK.png%20=640x" /> Tubelet embeddings in ViViT.
+<p><a href="https://arxiv.org/abs/2102.00719"><strong>Video Transformer Network</strong></a><span class="citation" data-cites="vtn"><sup><a href="#ref-vtn" role="doc-biblioref">69</a></sup></span> (VTN) proposed the use of a pre-trained 2D spatial backbone (the authors experiment with both CNN-based and ViT-based feature extractors) combined with a Transformer (in this case, a Longformer) operating on the extracted feature maps. The authors showed that this simple approach was competitive with baselines such as <a href="https://arxiv.org/abs/1812.03982">SlowFast</a><span class="citation" data-cites="slowfast"><sup><a href="#ref-slowfast" role="doc-biblioref">70</a></sup></span>.</p>
+<p><a href="https://arxiv.org/abs/2102.05095"><strong>Is Space-Time Attention All You Need for Video Understanding</strong></a><span class="citation" data-cites="timesformer"><sup><a href="#ref-timesformer" role="doc-biblioref">71</a></sup></span> introduced TimeSformer, an adaption of ViTs to video. After exploring several possible attention variants, the authors proposed one deemed Divided Space-Time attention. In this approach, frames are first divided into patches and linearly embedded, then fed to a single transformer encoder. Every encoder layer has two attention blocks applied consecutively: the first one on patch embeddings at the same location but in different frames (temporal attention), the second on patch embeddings in the same frame (spatial attention).</p>
+<p>The authors adopted ImageNet pretraining for spatial attention blocks and showed that the resulting models achieved state of the art, outperforming previous baselines on standard datasets such as <a href="https://arxiv.org/abs/1705.06950">Kinetics-400</a><span class="citation" data-cites="kinetics"><sup><a href="#ref-kinetics" role="doc-biblioref">72</a></sup></span>.</p>
+<p><a href="https://arxiv.org/abs/2103.13915"><strong>An Image is Worth 16x16 Words, What is a Video Worth?</strong></a><span class="citation" data-cites="videoworth"><sup><a href="#ref-videoworth" role="doc-biblioref">73</a></sup></span> proposed using a Vision Transformer to model the relationship between intra-frame patches, followed by a (temporal) Transformer encoder, modeling inter-frame relationships. It is conceptually similar to a VTN with a ViT-based spatial backbone.</p>
+<p>The resulting models (called Spatio and Temporal Transformers, or STAMs) outperformed strong baselines such as <a href="https://arxiv.org/abs/2004.04730">X3D</a><span class="citation" data-cites="x3d"><sup><a href="#ref-x3d" role="doc-biblioref">74</a></sup></span> in the accuracy/FLOPs trade-off.</p>
+<p><a href="https://arxiv.org/abs/2103.15691"><strong>ViViT: A Video Vision Transformer</strong></a><span class="citation" data-cites="vivit"><sup><a href="#ref-vivit" role="doc-biblioref">75</a></sup></span> discusses several approaches to adapt ViTs to video, and found the use of <em>tubelet embeddings</em>, linear projections of spatio-temporal tubes, to be most effective.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-22"></span>
+<img src="vivit.png" alt="Tubelet embeddings in ViViT." width="100%" />
+<p class="caption">
+Figure 20: Tubelet embeddings in ViViT.
 </p>
-<ul>
-<li></li>
-</ul>
+</div>
+</div>
 <p>The positional embeddings are initialized by temporally repeating positional embeddings obtained from pre-trained ViTs. Tubelet embeddings are instead initialized using “central frame initialization”, where the temporally central frame’s embedding is initialized using pre-trained ViT patch embeddings, while the rest are initialized with zeros.</p>
 <p>The resulting models, called Video Vision Transformers (ViViTs), achieved state of the art, outperforming TimeSformers, on several standard benchmarks. The authors even reported experiments using an extremely large backbone called ViViT-H, initialized from the similarly large ViT-H pre-trained on JFT-300M. The model obtained a substantial performance improvement, albeit with significant computational cost.</p>
-<p>Recently, <a href="https://arxiv.org/abs/2104.11227"><strong>Multiscale Vision Transformers</strong></a><span class="citation" data-cites="mvit"><sup><a href="#ref-mvit" role="doc-biblioref">75</a></sup></span> proposed the adoption of a hierarchical structure by progressively increasing the feature dimension while decreasing the spatiotemporal one. This is achieved through the use of pooling, applied to keys and values in attention blocks.</p>
+<p>Recently, <a href="https://arxiv.org/abs/2104.11227"><strong>Multiscale Vision Transformers</strong></a><span class="citation" data-cites="mvit"><sup><a href="#ref-mvit" role="doc-biblioref">76</a></sup></span> proposed the adoption of a hierarchical structure by progressively increasing the feature dimension while decreasing the spatiotemporal one. This is achieved through the use of pooling, applied to keys and values in attention blocks.</p>
 <p>The authors demonstrated the effectiveness of this approach by showing how the resulting models, called Multiscale Vision Transformers (MViTs), could outperform TimeSFormers and ViViTs on standard benchmarks while using a fraction of the compute. Importantly, this method does not require additional data (unlike TimeSFormers and ViViTs, that required ImageNet pretraining).</p>
 <h2 id="conclusion">Conclusion</h2>
-<p>At the time of writing, the only convolutional architecture still unsurpassed by transformers in efficiency is the recent <a href="https://arxiv.org/abs/2104.00298">EfficientNetV2 family of models</a><span class="citation" data-cites="efficientnetv2"><sup><a href="#ref-efficientnetv2" role="doc-biblioref">76</a></sup></span>, obtained through extensive neural architecture search. No similarly extensive search has been performed for ViT-based models, but the small one reported in <a href="https://arxiv.org/abs/2103.15808"><strong>CvT: Introducing Convolutions to Vision Transformers</strong></a><span class="citation" data-cites="cvt"><sup><a href="#ref-cvt" role="doc-biblioref">53</a></sup></span> achieved promising results (CvT-13-NAS).</p>
+<p>At the time of writing, the only convolutional architecture still unsurpassed by transformers in efficiency is the recent <a href="https://arxiv.org/abs/2104.00298">EfficientNetV2 family of models</a><span class="citation" data-cites="efficientnetv2"><sup><a href="#ref-efficientnetv2" role="doc-biblioref">77</a></sup></span>, obtained through extensive neural architecture search. No similarly extensive search has been performed for ViT-based models, but the small one reported in <a href="https://arxiv.org/abs/2103.15808"><strong>CvT: Introducing Convolutions to Vision Transformers</strong></a><span class="citation" data-cites="cvt"><sup><a href="#ref-cvt" role="doc-biblioref">53</a></sup></span> achieved promising results (CvT-13-NAS).</p>
 <p>From recent research, we can draw several conclusions:</p>
 <ul>
 <li>Inductive biases shape a model’s performance. The hard inductive biases that characterize convolutional neural networks provide them with a higher performance floor and a lower performance ceiling. Conversely, transformer-based approaches struggle to compete in the small data regime (thus requiring stronger data augmentations) but shine in regimes where data is plentiful. As many papers investigate, an effective solution may be injecting soft inductive biases in transformers, achieving both high sample efficiency in small data regimes and high model expressiveness when sufficient data is provided.</li>
@@ -1885,7 +1897,7 @@ Figure 7: Input image (top left), attention maps of an untrained SA block (top r
 <li>The amount of research coming out on a daily basis is significant. For this reason, we would like to highlight a few models for a more in-depth look, including the original <a href="https://openreview.net/forum?id=YicbFdNTTy">Vision Transformers</a><span class="citation" data-cites="vit"><sup><a href="#ref-vit" role="doc-biblioref">19</a></sup></span>, <a href="https://arxiv.org/abs/2012.12877">DeiTs</a><span class="citation" data-cites="deit"><sup><a href="#ref-deit" role="doc-biblioref">20</a></sup></span>, <a href="https://arxiv.org/abs/2103.00112">TNTs</a><span class="citation" data-cites="tnt"><sup><a href="#ref-tnt" role="doc-biblioref">32</a></sup></span>, <a href="https://arxiv.org/abs/2103.10697">ConViTs</a><span class="citation" data-cites="convit"><sup><a href="#ref-convit" role="doc-biblioref">40</a></sup></span>, <a href="https://arxiv.org/abs/2103.14030">Swin Transformers</a><span class="citation" data-cites="swin"><sup><a href="#ref-swin" role="doc-biblioref">48</a></sup></span>, <a href="https://arxiv.org/abs/2103.15808">CvTs</a><span class="citation" data-cites="cvt"><sup><a href="#ref-cvt" role="doc-biblioref">53</a></sup></span>, <a href="https://arxiv.org/abs/2103.17239">CaiTs</a><span class="citation" data-cites="cait"><sup><a href="#ref-cait" role="doc-biblioref">35</a></sup></span>, and <a href="https://arxiv.org/abs/2103.15358">ViLs</a><span class="citation" data-cites="vil"><sup><a href="#ref-vil" role="doc-biblioref">55</a></sup></span>.</li>
 <li>Transformers in vision are just getting started, and their performance is likely to continue improving as a wider part of the computer vision community adopts them. Increases in compute and data availability are also likely to increasingly tilt the balance in their favor.</li>
 </ul>
-<p>The success of transformers in vision has had far-reaching consequences. We have discussed their influence on medical and video tasks, but their impact goes as far as audio (with <a href="https://arxiv.org/abs/2104.01778">AST</a><span class="citation" data-cites="ast"><sup><a href="#ref-ast" role="doc-biblioref">77</a></sup></span>, <a href="https://arxiv.org/abs/2104.00769">Keyword Transformer</a><span class="citation" data-cites="keyword"><sup><a href="#ref-keyword" role="doc-biblioref">78</a></sup></span>) and multimodal architectures (such as <a href="https://arxiv.org/abs/2102.03334">ViLT</a><span class="citation" data-cites="vilt"><sup><a href="#ref-vilt" role="doc-biblioref">79</a></sup></span> and <a href="https://arxiv.org/abs/2104.11178">VATT</a><span class="citation" data-cites="vatt"><sup><a href="#ref-vatt" role="doc-biblioref">80</a></sup></span>). Their success has also inspired architectures with even fewer inductive biases, such as the <a href="https://arxiv.org/abs/2103.03206">Perceiver</a><span class="citation" data-cites="perceiver"><sup><a href="#ref-perceiver" role="doc-biblioref">81</a></sup></span>.</p>
+<p>The success of transformers in vision has had far-reaching consequences. We have discussed their influence on medical and video tasks, but their impact goes as far as audio (with <a href="https://arxiv.org/abs/2104.01778">AST</a><span class="citation" data-cites="ast"><sup><a href="#ref-ast" role="doc-biblioref">78</a></sup></span>, <a href="https://arxiv.org/abs/2104.00769">Keyword Transformer</a><span class="citation" data-cites="keyword"><sup><a href="#ref-keyword" role="doc-biblioref">79</a></sup></span>) and multimodal architectures (such as <a href="https://arxiv.org/abs/2102.03334">ViLT</a><span class="citation" data-cites="vilt"><sup><a href="#ref-vilt" role="doc-biblioref">80</a></sup></span> and <a href="https://arxiv.org/abs/2104.11178">VATT</a><span class="citation" data-cites="vatt"><sup><a href="#ref-vatt" role="doc-biblioref">81</a></sup></span>). Their success has also inspired architectures with even fewer inductive biases, such as the <a href="https://arxiv.org/abs/2103.03206">Perceiver</a><span class="citation" data-cites="perceiver"><sup><a href="#ref-perceiver" role="doc-biblioref">82</a></sup></span>.</p>
 <p>One cannot help but feel excited as more and more researchers from all over the artificial intelligence field converge toward common, more general architectures.</p>
 <h2 class="appendix" id="acknowledgements">Acknowledgements</h2>
 <p>Thanks to Simone Scardapane, Andrea Panizza, Amedeo Buonanno and Iacopo Poli for help in proofreading and improving this work.</p>
@@ -2068,71 +2080,74 @@ Figure 7: Input image (top left), attention maps of an untrained SA block (top r
 <div id="ref-canziani" class="csl-entry" role="doc-biblioentry">
 <div class="csl-left-margin">59. </div><div class="csl-right-inline">Canziani, A., Paszke, A. &amp; Culurciello, E. An analysis of deep neural network models for practical applications. <em>CoRR</em> <strong>abs/1605.07678</strong>, (2016).</div>
 </div>
+<div id="ref-resnetrs" class="csl-entry" role="doc-biblioentry">
+<div class="csl-left-margin">60. </div><div class="csl-right-inline">Bello, I. <em>et al.</em> Revisiting ResNets: Improved training and scaling strategies. <em>CoRR</em> <strong>abs/2103.07579</strong>, (2021).</div>
+</div>
 <div id="ref-robustness" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">60. </div><div class="csl-right-inline">Bhojanapalli, S. <em>et al.</em> Understanding robustness of transformers for image classification. <em>CoRR</em> <strong>abs/2103.14586</strong>, (2021).</div>
+<div class="csl-left-margin">61. </div><div class="csl-right-inline">Bhojanapalli, S. <em>et al.</em> Understanding robustness of transformers for image classification. <em>CoRR</em> <strong>abs/2103.14586</strong>, (2021).</div>
 </div>
 <div id="ref-gsa" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">61. </div><div class="csl-right-inline">Romero, D. W. &amp; Cordonnier, J.-B. Group equivariant stand-alone self-attention for vision. in <em>International conference on learning representations</em> (2021).</div>
+<div class="csl-left-margin">62. </div><div class="csl-right-inline">Romero, D. W. &amp; Cordonnier, J.-B. Group equivariant stand-alone self-attention for vision. in <em>International conference on learning representations</em> (2021).</div>
 </div>
 <div id="ref-igpt" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">62. </div><div class="csl-right-inline">Chen, M. <em>et al.</em> Generative pretraining from pixels. in <em>International conference on machine learning</em> (2020).</div>
+<div class="csl-left-margin">63. </div><div class="csl-right-inline">Chen, M. <em>et al.</em> Generative pretraining from pixels. in <em>International conference on machine learning</em> (2020).</div>
 </div>
 <div id="ref-random" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">63. </div><div class="csl-right-inline">Chen, X., Xie, S. &amp; He, K. An empirical study of training self-supervised vision transformers. <em>CoRR</em> <strong>abs/2104.02057</strong>, (2021).</div>
+<div class="csl-left-margin">64. </div><div class="csl-right-inline">Chen, X., Xie, S. &amp; He, K. An empirical study of training self-supervised vision transformers. <em>CoRR</em> <strong>abs/2104.02057</strong>, (2021).</div>
 </div>
 <div id="ref-sit" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">64. </div><div class="csl-right-inline">Ahmed, S. A. A., Awais, M. &amp; Kittler, J. SiT: Self-supervised vIsion transformer. <em>CoRR</em> <strong>abs/2104.03602</strong>, (2021).</div>
+<div class="csl-left-margin">65. </div><div class="csl-right-inline">Ahmed, S. A. A., Awais, M. &amp; Kittler, J. SiT: Self-supervised vIsion transformer. <em>CoRR</em> <strong>abs/2104.03602</strong>, (2021).</div>
 </div>
 <div id="ref-transunet" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">65. </div><div class="csl-right-inline">Chen, J. <em>et al.</em> TransUNet: Transformers make strong encoders for medical image segmentation. <em>CoRR</em> <strong>abs/2102.04306</strong>, (2021).</div>
+<div class="csl-left-margin">66. </div><div class="csl-right-inline">Chen, J. <em>et al.</em> TransUNet: Transformers make strong encoders for medical image segmentation. <em>CoRR</em> <strong>abs/2102.04306</strong>, (2021).</div>
 </div>
 <div id="ref-medt" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">66. </div><div class="csl-right-inline">Valanarasu, J. M. J., Oza, P., Hacihaliloglu, I. &amp; Patel, V. M. Medical transformer: Gated axial-attention for medical image segmentation. <em>CoRR</em> <strong>abs/2102.10662</strong>, (2021).</div>
+<div class="csl-left-margin">67. </div><div class="csl-right-inline">Valanarasu, J. M. J., Oza, P., Hacihaliloglu, I. &amp; Patel, V. M. Medical transformer: Gated axial-attention for medical image segmentation. <em>CoRR</em> <strong>abs/2102.10662</strong>, (2021).</div>
 </div>
 <div id="ref-unetr" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">67. </div><div class="csl-right-inline">Hatamizadeh, A., Yang, D., Roth, H. &amp; Xu, D. <span>UNETR:</span> Transformers for 3D medical image segmentation. <em>CoRR</em> <strong>abs/2103.10504</strong>, (2021).</div>
+<div class="csl-left-margin">68. </div><div class="csl-right-inline">Hatamizadeh, A., Yang, D., Roth, H. &amp; Xu, D. <span>UNETR:</span> Transformers for 3D medical image segmentation. <em>CoRR</em> <strong>abs/2103.10504</strong>, (2021).</div>
 </div>
 <div id="ref-vtn" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">68. </div><div class="csl-right-inline">Neimark, D., Bar, O., Zohar, M. &amp; Asselmann, D. Video transformer network. <em>CoRR</em> <strong>abs/2102.00719</strong>, (2021).</div>
+<div class="csl-left-margin">69. </div><div class="csl-right-inline">Neimark, D., Bar, O., Zohar, M. &amp; Asselmann, D. Video transformer network. <em>CoRR</em> <strong>abs/2102.00719</strong>, (2021).</div>
 </div>
 <div id="ref-slowfast" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">69. </div><div class="csl-right-inline">Feichtenhofer, C., Fan, H., Malik, J. &amp; He, K. SlowFast networks for video recognition. in <em>2019 <span>IEEE/CVF</span> international conference on computer vision, <span>ICCV</span> 2019, seoul, korea (south), october 27 - november 2, 2019</em> 6201–6210 (<span>IEEE</span>, 2019). doi:<a href="https://doi.org/10.1109/ICCV.2019.00630">10.1109/ICCV.2019.00630</a>.</div>
+<div class="csl-left-margin">70. </div><div class="csl-right-inline">Feichtenhofer, C., Fan, H., Malik, J. &amp; He, K. SlowFast networks for video recognition. in <em>2019 <span>IEEE/CVF</span> international conference on computer vision, <span>ICCV</span> 2019, seoul, korea (south), october 27 - november 2, 2019</em> 6201–6210 (<span>IEEE</span>, 2019). doi:<a href="https://doi.org/10.1109/ICCV.2019.00630">10.1109/ICCV.2019.00630</a>.</div>
 </div>
 <div id="ref-timesformer" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">70. </div><div class="csl-right-inline">Bertasius, G., Wang, H. &amp; Torresani, L. Is space-time attention all you need for video understanding? <em>CoRR</em> <strong>abs/2102.05095</strong>, (2021).</div>
+<div class="csl-left-margin">71. </div><div class="csl-right-inline">Bertasius, G., Wang, H. &amp; Torresani, L. Is space-time attention all you need for video understanding? <em>CoRR</em> <strong>abs/2102.05095</strong>, (2021).</div>
 </div>
 <div id="ref-kinetics" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">71. </div><div class="csl-right-inline">Kay, W. <em>et al.</em> The kinetics human action video dataset. <em>CoRR</em> <strong>abs/1705.06950</strong>, (2017).</div>
+<div class="csl-left-margin">72. </div><div class="csl-right-inline">Kay, W. <em>et al.</em> The kinetics human action video dataset. <em>CoRR</em> <strong>abs/1705.06950</strong>, (2017).</div>
 </div>
 <div id="ref-videoworth" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">72. </div><div class="csl-right-inline">Sharir, G., Noy, A. &amp; Zelnik-Manor, L. An image is worth 16x16 words, what is a video worth? <em>CoRR</em> <strong>abs/2103.13915</strong>, (2021).</div>
+<div class="csl-left-margin">73. </div><div class="csl-right-inline">Sharir, G., Noy, A. &amp; Zelnik-Manor, L. An image is worth 16x16 words, what is a video worth? <em>CoRR</em> <strong>abs/2103.13915</strong>, (2021).</div>
 </div>
 <div id="ref-x3d" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">73. </div><div class="csl-right-inline">Feichtenhofer, C. <span>X3D:</span> Expanding architectures for efficient video recognition. in <em>2020 <span>IEEE/CVF</span> conference on computer vision and pattern recognition, <span>CVPR</span> 2020, seattle, WA, USA, june 13-19, 2020</em> 200–210 (<span>IEEE</span>, 2020). doi:<a href="https://doi.org/10.1109/CVPR42600.2020.00028">10.1109/CVPR42600.2020.00028</a>.</div>
+<div class="csl-left-margin">74. </div><div class="csl-right-inline">Feichtenhofer, C. <span>X3D:</span> Expanding architectures for efficient video recognition. in <em>2020 <span>IEEE/CVF</span> conference on computer vision and pattern recognition, <span>CVPR</span> 2020, seattle, WA, USA, june 13-19, 2020</em> 200–210 (<span>IEEE</span>, 2020). doi:<a href="https://doi.org/10.1109/CVPR42600.2020.00028">10.1109/CVPR42600.2020.00028</a>.</div>
 </div>
 <div id="ref-vivit" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">74. </div><div class="csl-right-inline">Arnab, A. <em>et al.</em> ViViT: <span>A</span> video vision transformer. <em>CoRR</em> <strong>abs/2103.15691</strong>, (2021).</div>
+<div class="csl-left-margin">75. </div><div class="csl-right-inline">Arnab, A. <em>et al.</em> ViViT: <span>A</span> video vision transformer. <em>CoRR</em> <strong>abs/2103.15691</strong>, (2021).</div>
 </div>
 <div id="ref-mvit" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">75. </div><div class="csl-right-inline">Fan, H. <em>et al.</em> Multiscale vision transformers. <em>CoRR</em> <strong>abs/2104.11227</strong>, (2021).</div>
+<div class="csl-left-margin">76. </div><div class="csl-right-inline">Fan, H. <em>et al.</em> Multiscale vision transformers. <em>CoRR</em> <strong>abs/2104.11227</strong>, (2021).</div>
 </div>
 <div id="ref-efficientnetv2" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">76. </div><div class="csl-right-inline">Tan, M. &amp; Le, Q. V. EfficientNetV2: Smaller models and faster training. <em>CoRR</em> <strong>abs/2104.00298</strong>, (2021).</div>
+<div class="csl-left-margin">77. </div><div class="csl-right-inline">Tan, M. &amp; Le, Q. V. EfficientNetV2: Smaller models and faster training. <em>CoRR</em> <strong>abs/2104.00298</strong>, (2021).</div>
 </div>
 <div id="ref-ast" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">77. </div><div class="csl-right-inline">Gong, Y., Chung, Y.-A. &amp; Glass, J. R. <span>AST:</span> Audio spectrogram transformer. <em>CoRR</em> <strong>abs/2104.01778</strong>, (2021).</div>
+<div class="csl-left-margin">78. </div><div class="csl-right-inline">Gong, Y., Chung, Y.-A. &amp; Glass, J. R. <span>AST:</span> Audio spectrogram transformer. <em>CoRR</em> <strong>abs/2104.01778</strong>, (2021).</div>
 </div>
 <div id="ref-keyword" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">78. </div><div class="csl-right-inline">Berg, A., O’Connor, M. &amp; Cruz, M. T. Keyword transformer: <span>A</span> self-attention model for keyword spotting. <em>CoRR</em> <strong>abs/2104.00769</strong>, (2021).</div>
+<div class="csl-left-margin">79. </div><div class="csl-right-inline">Berg, A., O’Connor, M. &amp; Cruz, M. T. Keyword transformer: <span>A</span> self-attention model for keyword spotting. <em>CoRR</em> <strong>abs/2104.00769</strong>, (2021).</div>
 </div>
 <div id="ref-vilt" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">79. </div><div class="csl-right-inline">Kim, W., Son, B. &amp; Kim, I. ViLT: Vision-and-language transformer without convolution or region supervision. <em>CoRR</em> <strong>abs/2102.03334</strong>, (2021).</div>
+<div class="csl-left-margin">80. </div><div class="csl-right-inline">Kim, W., Son, B. &amp; Kim, I. ViLT: Vision-and-language transformer without convolution or region supervision. <em>CoRR</em> <strong>abs/2102.03334</strong>, (2021).</div>
 </div>
 <div id="ref-vatt" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">80. </div><div class="csl-right-inline">Akbari, H. <em>et al.</em> <span>VATT:</span> Transformers for multimodal self-supervised learning from raw video, audio and text. <em>CoRR</em> <strong>abs/2104.11178</strong>, (2021).</div>
+<div class="csl-left-margin">81. </div><div class="csl-right-inline">Akbari, H. <em>et al.</em> <span>VATT:</span> Transformers for multimodal self-supervised learning from raw video, audio and text. <em>CoRR</em> <strong>abs/2104.11178</strong>, (2021).</div>
 </div>
 <div id="ref-perceiver" class="csl-entry" role="doc-biblioentry">
-<div class="csl-left-margin">81. </div><div class="csl-right-inline">Jaegle, A. <em>et al.</em> Perceiver: General perception with iterative attention. <em>CoRR</em> <strong>abs/2103.03206</strong>, (2021).</div>
+<div class="csl-left-margin">82. </div><div class="csl-right-inline">Jaegle, A. <em>et al.</em> Perceiver: General perception with iterative attention. <em>CoRR</em> <strong>abs/2103.03206</strong>, (2021).</div>
 </div>
 </div>
 <!--radix_placeholder_article_footer-->
