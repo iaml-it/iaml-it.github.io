@@ -86,21 +86,22 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
 
   <!--radix_placeholder_meta_tags-->
-<title>IAML Distill Blog: Transformers in Vision: a Recap</title>
+<title>IAML Distill Blog: Transformers in Vision</title>
 
-<meta property="description" itemprop="description" content="A short description of the post."/>
+<meta property="description" itemprop="description" content="What have Transformers been up to?"/>
 
 <link rel="canonical" href="https://iaml-it.github.io/distill/posts/2021-04-28-transformers-in-vision/"/>
+<link rel="license" href="https://creativecommons.org/licenses/by/4.0/"/>
 
 <!--  https://schema.org/Article -->
-<meta property="article:published" itemprop="datePublished" content="2021-04-27"/>
-<meta property="article:created" itemprop="dateCreated" content="2021-04-27"/>
+<meta property="article:published" itemprop="datePublished" content="2021-04-28"/>
+<meta property="article:created" itemprop="dateCreated" content="2021-04-28"/>
 <meta name="article:author" content="Niccolò Zanichelli"/>
 
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-<meta property="og:title" content="IAML Distill Blog: Transformers in Vision: a Recap"/>
+<meta property="og:title" content="IAML Distill Blog: Transformers in Vision"/>
 <meta property="og:type" content="article"/>
-<meta property="og:description" content="A short description of the post."/>
+<meta property="og:description" content="What have Transformers been up to?"/>
 <meta property="og:url" content="https://iaml-it.github.io/distill/posts/2021-04-28-transformers-in-vision/"/>
 <meta property="og:image" content="https://iaml-it.github.io/distill/posts/2021-04-28-transformers-in-vision/deit.png"/>
 <meta property="og:image:width" content="842"/>
@@ -110,18 +111,19 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 <!--  https://dev.twitter.com/cards/types/summary -->
 <meta property="twitter:card" content="summary_large_image"/>
-<meta property="twitter:title" content="IAML Distill Blog: Transformers in Vision: a Recap"/>
-<meta property="twitter:description" content="A short description of the post."/>
+<meta property="twitter:title" content="IAML Distill Blog: Transformers in Vision"/>
+<meta property="twitter:description" content="What have Transformers been up to?"/>
 <meta property="twitter:url" content="https://iaml-it.github.io/distill/posts/2021-04-28-transformers-in-vision/"/>
 <meta property="twitter:image" content="https://iaml-it.github.io/distill/posts/2021-04-28-transformers-in-vision/deit.png"/>
 <meta property="twitter:image:width" content="842"/>
 <meta property="twitter:image:height" content="801"/>
 
 <!--  https://scholar.google.com/intl/en/scholar/inclusion.html#indexing -->
-<meta name="citation_title" content="IAML Distill Blog: Transformers in Vision: a Recap"/>
+<meta name="citation_title" content="IAML Distill Blog: Transformers in Vision"/>
 <meta name="citation_fulltext_html_url" content="https://iaml-it.github.io/distill/posts/2021-04-28-transformers-in-vision/"/>
-<meta name="citation_online_date" content="2021/04/27"/>
-<meta name="citation_publication_date" content="2021/04/27"/>
+<meta name="citation_fulltext_world_readable" content=""/>
+<meta name="citation_online_date" content="2021/04/28"/>
+<meta name="citation_publication_date" content="2021/04/28"/>
 <meta name="citation_author" content="Niccolò Zanichelli"/>
 <!--/radix_placeholder_meta_tags-->
   
@@ -129,6 +131,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <meta name="citation_reference" content="citation_title=BERT: Pre-training of deep bidirectional transformers for language understanding;citation_publication_date=2019;citation_publisher=Association for Computational Linguistics;citation_doi=10.18653/v1/n19-1423;citation_author=Jacob Devlin;citation_author=Ming-Wei Chang;citation_author=Kenton Lee;citation_author=Kristina Toutanova"/>
   <meta name="citation_reference" content="citation_title=Megatron-LM: Training multi-billion parameter language models using model parallelism;citation_publication_date=2019;citation_volume=abs/1909.08053;citation_author=Mohammad Shoeybi;citation_author=Mostofa Patwary;citation_author=Raul Puri;citation_author=Patrick LeGresley;citation_author=Jared Casper;citation_author=Bryan Catanzaro"/>
   <meta name="citation_reference" content="citation_title=Exploring the limits of transfer learning with a unified text-to-text transformer;citation_publication_date=2020;citation_volume=21;citation_author=Colin Raffel;citation_author=Noam Shazeer;citation_author=Adam Roberts;citation_author=Katherine Lee;citation_author=Sharan Narang;citation_author=Michael Matena;citation_author=Yanqi Zhou;citation_author=Wei Li;citation_author=Peter J. Liu"/>
+  <meta name="citation_reference" content="citation_title=Improving language understanding with unsupervised learning;citation_publication_date=2019;citation_publisher=OpenAI;citation_author=Alec Radford"/>
+  <meta name="citation_reference" content="citation_title=Better language models and their implications;citation_publication_date=2018;citation_publisher=OpenAI;citation_author=Alec Radford"/>
+  <meta name="citation_reference" content="citation_title=Language models are few-shot learners;citation_publication_date=2020;citation_author=Tom B. Brown;citation_author=Benjamin Mann;citation_author=Nick Ryder;citation_author=Melanie Subbiah;citation_author=Jared Kaplan;citation_author=Prafulla Dhariwal;citation_author=Arvind Neelakantan;citation_author=Pranav Shyam;citation_author=Girish Sastry;citation_author=Amanda Askell;citation_author=Sandhini Agarwal;citation_author=Ariel Herbert-Voss;citation_author=Gretchen Krueger;citation_author=Tom Henighan;citation_author=Rewon Child;citation_author=Aditya Ramesh;citation_author=Daniel M. Ziegler;citation_author=Jeffrey Wu;citation_author=Clemens Winter;citation_author=Christopher Hesse;citation_author=Mark Chen;citation_author=Eric Sigler;citation_author=Mateusz Litwin;citation_author=Scott Gray;citation_author=Benjamin Chess;citation_author=Jack Clark;citation_author=Christopher Berner;citation_author=Sam McCandlish;citation_author=Alec Radford;citation_author=Ilya Sutskever;citation_author=Dario Amodei"/>
   <meta name="citation_reference" content="citation_title=Attention augmented convolutional networks;citation_publication_date=2019;citation_publisher=IEEE;citation_doi=10.1109/ICCV.2019.00338;citation_author=Irwan Bello;citation_author=Barret Zoph;citation_author=Quoc Le;citation_author=Ashish Vaswani;citation_author=Jonathon Shlens"/>
   <meta name="citation_reference" content="citation_title=Stand-alone self-attention in vision models;citation_publication_date=2019;citation_author=Niki Parmar;citation_author=Prajit Ramachandran;citation_author=Ashish Vaswani;citation_author=Irwan Bello;citation_author=Anselm Levskaya;citation_author=Jon Shlens"/>
   <meta name="citation_reference" content="citation_title=End-to-end object detection with transformers;citation_publication_date=2020;citation_publisher=Springer;citation_volume=12346;citation_doi=10.1007/978-3-030-58452-8\_13;citation_author=Nicolas Carion;citation_author=Francisco Massa;citation_author=Gabriel Synnaeve;citation_author=Nicolas Usunier;citation_author=Alexander Kirillov;citation_author=Sergey Zagoruyko"/>
@@ -182,12 +187,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","bibliography","csl","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Transformers in Vision: a Recap"]},{"type":"character","attributes":{},"value":["A short description of the post."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Niccolò Zanichelli"]},{"type":"character","attributes":{},"value":["https://example.com/norajones"]}]}]},{"type":"character","attributes":{},"value":["04-27-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["bibliography.bib"]},{"type":"character","attributes":{},"value":["nature.csl"]},{"type":"character","attributes":{},"value":["https://iaml-it.github.io/distill/posts/2021-04-28-transformers-in-vision/"]},{"type":"character","attributes":{},"value":["https://iaml-it.github.io/distill/posts/2021-04-28-transformers-in-vision/"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","preview","author","date","output","creative_commons","bibliography","csl","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Transformers in Vision"]},{"type":"character","attributes":{},"value":["What have Transformers been up to?"]},{"type":"character","attributes":{},"value":["posts/2021-04-28-transformers-in-vision/ViT.gif"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Niccolò Zanichelli"]},{"type":"character","attributes":{},"value":["https://twitter.com/nickz_42"]}]}]},{"type":"character","attributes":{},"value":["04-28-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["CC BY"]},{"type":"character","attributes":{},"value":["bibliography.bib"]},{"type":"character","attributes":{},"value":["nature.csl"]},{"type":"character","attributes":{},"value":["https://iaml-it.github.io/distill/posts/2021-04-28-transformers-in-vision/"]},{"type":"character","attributes":{},"value":["https://iaml-it.github.io/distill/posts/2021-04-28-transformers-in-vision/"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["american-medical-association.csl","bibliography.bib","cait.png","conditional.png","convit.png","deepvit.png","deit.png","ieee.csl","imagenet1k.html","imagenet21k.html","nature.csl","tnt.png","transformers-in-vision-a-recap_files/anchor-4.2.2/anchor.min.js","transformers-in-vision-a-recap_files/bowser-1.9.3/bowser.min.js","transformers-in-vision-a-recap_files/distill-2.2.21/template.v2.js","transformers-in-vision-a-recap_files/header-attrs-2.7/header-attrs.js","transformers-in-vision-a-recap_files/jquery-1.11.3/jquery.min.js","transformers-in-vision-a-recap_files/popper-2.6.0/popper.min.js","transformers-in-vision-a-recap_files/tippy-6.2.7/tippy-bundle.umd.min.js","transformers-in-vision-a-recap_files/tippy-6.2.7/tippy-light-border.css","transformers-in-vision-a-recap_files/tippy-6.2.7/tippy.css","transformers-in-vision-a-recap_files/tippy-6.2.7/tippy.umd.min.js","transformers-in-vision-a-recap_files/webcomponents-2.0.0/webcomponents.js","ViT.gif"]}
+  {"type":"character","attributes":{},"value":["american-medical-association.csl","bibliography.bib","cait.png","conditional.png","convit.png","deepvit.png","deit.png","ieee.csl","imagenet1k.html","imagenet21k.html","index.html","nature.csl","tnt.png","transformers-in-vision_files/anchor-4.2.2/anchor.min.js","transformers-in-vision_files/bowser-1.9.3/bowser.min.js","transformers-in-vision_files/distill-2.2.21/template.v2.js","transformers-in-vision_files/header-attrs-2.7/header-attrs.js","transformers-in-vision_files/jquery-1.11.3/jquery.min.js","transformers-in-vision_files/popper-2.6.0/popper.min.js","transformers-in-vision_files/tippy-6.2.7/tippy-bundle.umd.min.js","transformers-in-vision_files/tippy-6.2.7/tippy-light-border.css","transformers-in-vision_files/tippy-6.2.7/tippy.css","transformers-in-vision_files/tippy-6.2.7/tippy.umd.min.js","transformers-in-vision_files/webcomponents-2.0.0/webcomponents.js","ViT.gif"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -1873,7 +1878,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Transformers in Vision: a Recap","description":"A short description of the post.","authors":[{"author":"Niccolò Zanichelli","authorURL":"https://example.com/norajones","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-04-27T00:00:00.000+02:00","citationText":"Zanichelli, 2021"}
+{"title":"Transformers in Vision","description":"What have Transformers been up to?","authors":[{"author":"Niccolò Zanichelli","authorURL":"https://twitter.com/nickz_42","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-04-28T00:00:00.000+02:00","citationText":"Zanichelli, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1895,23 +1900,23 @@ document.addEventListener('DOMContentLoaded', function() {
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>Transformers in Vision: a Recap</h1>
+<h1>Transformers in Vision</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>A short description of the post.</p></p>
+<p><p>What have Transformers been up to?</p></p>
 </div>
 
 <div class="d-byline">
-  Niccolò Zanichelli <a href="https://example.com/norajones" class="uri">https://example.com/norajones</a> 
+  Niccolò Zanichelli <a href="https://twitter.com/nickz_42" class="uri">https://twitter.com/nickz_42</a> 
   
-<br/>04-27-2021
+<br/>04-28-2021
 </div>
 
 <div class="d-article">
 <h2 id="introduction">Introduction</h2>
-<p>Initially introduced with the now-famous <a href="(https://arxiv.org/abs/1706.03762)"><strong>Attention is all you need</strong></a><span class="citation" data-cites="transformer"><sup><a href="#ref-transformer" role="doc-biblioref">1</a></sup></span>, the Transformer has dominated the field of Natural Language Processing (NLP) for years. Particularly worth noting is the effort gone into scaling up Transformer-based models, such as BERT<span class="citation" data-cites="bert"><sup><a href="#ref-bert" role="doc-biblioref">2</a></sup></span>, MegatronLM<span class="citation" data-cites="megatron"><sup><a href="#ref-megatron" role="doc-biblioref">3</a></sup></span>, T5<span class="citation" data-cites="t5"><sup><a href="#ref-t5" role="doc-biblioref">4</a></sup></span>, and the various GPTs<span class="citation" data-cites="gpt gpt2 gpt3"><sup><a href="#ref-gpt" role="doc-biblioref">5</a>–<a href="#ref-gpt3" role="doc-biblioref">7</a></sup></span>, due to their favourable scaling characteristics<span class="citation" data-cites="neural_laws1 neural_laws2"><sup><a href="#ref-neural_laws1" role="doc-biblioref">8</a>,<a href="#ref-neural_laws2" role="doc-biblioref">9</a></sup></span>.</p>
+<p>Initially introduced with the now-famous <a href="(https://arxiv.org/abs/1706.03762)"><strong>Attention is all you need</strong></a><span class="citation" data-cites="transformer"><sup><a href="#ref-transformer" role="doc-biblioref">1</a></sup></span>, the Transformer has dominated the field of Natural Language Processing (NLP) for years. Particularly worth noting is the effort gone into scaling up Transformer-based models, such as <a href="https://doi.org/10.18653/v1/n19-1423">BERT</a><span class="citation" data-cites="bert"><sup><a href="#ref-bert" role="doc-biblioref">2</a></sup></span>, <a href="http://arxiv.org/abs/1909.08053">MegatronLM</a><span class="citation" data-cites="megatron"><sup><a href="#ref-megatron" role="doc-biblioref">3</a></sup></span>, <a href="http://jmlr.org/papers/v21/20-074.html">T5</a><span class="citation" data-cites="t5"><sup><a href="#ref-t5" role="doc-biblioref">4</a></sup></span>, and the various GPTs (<a href="https://openai.com/blog/language-unsupervised/">GPT</a><span class="citation" data-cites="gpt"><sup><a href="#ref-gpt" role="doc-biblioref">5</a></sup></span>, <a href="https://openai.com/blog/better-language-models/">GPT-2</a><span class="citation" data-cites="gpt2"><sup><a href="#ref-gpt2" role="doc-biblioref">6</a></sup></span> and <a href="https://proceedings.neurips.cc/paper/2020/hash/1457c0d6bfcb4967418bfb8ac142f64a-Abstract.html">GPT-3</a><span class="citation" data-cites="gpt3"><sup><a href="#ref-gpt3" role="doc-biblioref">7</a></sup></span>), due to their favourable scaling characteristics<span class="citation" data-cites="neural_laws1 neural_laws2"><sup><a href="#ref-neural_laws1" role="doc-biblioref">8</a>,<a href="#ref-neural_laws2" role="doc-biblioref">9</a></sup></span>.</p>
 <p>The success of transformers in NLP has not gone unnoticed in other fields, where they have been responsible for significant breakthroughs such as <a href="https://deepmind.com/blog/article/alphafold-a-solution-to-a-50-year-old-grand-challenge-in-biology">AlphaFold 2</a> in the field of protein folding.</p>
-<p>Important works adapting transformers (and self-attention) to vision include Attention Augmented Convolutional Networks,<span class="citation" data-cites="aacn"><sup><a href="#ref-aacn" role="doc-biblioref">10</a></sup></span> Stand-Alone Self-Attention models<span class="citation" data-cites="sasa"><sup><a href="#ref-sasa" role="doc-biblioref">11</a></sup></span> (SASA models), DETR<span class="citation" data-cites="detr"><sup><a href="#ref-detr" role="doc-biblioref">12</a></sup></span>, Visual Transformers<span class="citation" data-cites="visual_transformer"><sup><a href="#ref-visual_transformer" role="doc-biblioref">13</a></sup></span> and LambdaNetworks<span class="citation" data-cites="lambda"><sup><a href="#ref-lambda" role="doc-biblioref">14</a></sup></span>; as well as Image Transformers<span class="citation" data-cites="image_transformer"><sup><a href="#ref-image_transformer" role="doc-biblioref">15</a></sup></span> and Axial Transformers<span class="citation" data-cites="axial"><sup><a href="#ref-axial" role="doc-biblioref">16</a></sup></span> in the generative domain.</p>
+<p>Important works adapting transformers (and self-attention) to vision include <a href="https://doi.org/10.1109/ICCV.2019.00338">Attention Augmented Convolutional Networks</a><span class="citation" data-cites="aacn"><sup><a href="#ref-aacn" role="doc-biblioref">10</a></sup></span>, <a href="https://proceedings.neurips.cc/paper/2019/hash/3416a75f4cea9109507cacd8e2f2aefc-Abstract.html">Stand-Alone Self-Attention models</a><span class="citation" data-cites="sasa"><sup><a href="#ref-sasa" role="doc-biblioref">11</a></sup></span> (SASA models), <a href="https://link.springer.com/chapter/10.1007/978-3-030-58452-8_13">DETR</a><span class="citation" data-cites="detr"><sup><a href="#ref-detr" role="doc-biblioref">12</a></sup></span>, <a href="https://arxiv.org/abs/2006.03677">Visual Transformers</a><span class="citation" data-cites="visual_transformer"><sup><a href="#ref-visual_transformer" role="doc-biblioref">13</a></sup></span> and <a href="https://arxiv.org/abs/2102.08602">LambdaNetworks</a><span class="citation" data-cites="lambda"><sup><a href="#ref-lambda" role="doc-biblioref">14</a></sup></span>; as well as <a href="http://proceedings.mlr.press/v80/parmar18a.html">Image Transformers</a><span class="citation" data-cites="image_transformer"><sup><a href="#ref-image_transformer" role="doc-biblioref">15</a></sup></span> and <a href="http://arxiv.org/abs/1912.12180">Axial Transformers</a><span class="citation" data-cites="axial"><sup><a href="#ref-axial" role="doc-biblioref">16</a></sup></span> in the generative domain.</p>
 <p>For an in-depth introduction to these works, we recommend two recent reviews: <a href="https://arxiv.org/abs/2012.12556"><strong>A Survey in Visual Transformers</strong></a><span class="citation" data-cites="survey1"><sup><a href="#ref-survey1" role="doc-biblioref">17</a></sup></span> and <a href="https://arxiv.org/abs/2101.01169"><strong>Transformers in Vision: A Survey</strong></a><span class="citation" data-cites="survey2"><sup><a href="#ref-survey2" role="doc-biblioref">18</a></sup></span>.</p>
 <h2 id="overview">Overview</h2>
 <p>This blog post aims to summarize recent research in applying transformers and self-attention to vision, with a focus on (but scope not limited to) image classification. While by no means exhaustive, it can hopefully represent a starting point for a more in-depth dive into the literature.</p>
@@ -1958,7 +1963,11 @@ Figure 2: The Data efficient image Transformer hard-label distillation procedure
 <p>Further, the use of ResNet blocks in the initial stages to efficiently learn lower resolution feature maps allowed the models to perform well in both instance segmentation and object detection tasks, where high-resolution images are typical.</p>
 <h3 id="conditional-positional-encodings">Conditional Positional Encodings</h3>
 <p><a href="https://arxiv.org/abs/2102.10882"><strong>Conditional Positional Encodings for Vision Transformers</strong></a><span class="citation" data-cites="conditional"><sup><a href="#ref-conditional" role="doc-biblioref">31</a></sup></span> studied alternatives to the positional embeddings and class token used in ViTs. In particular, the paper proposes the use of Positional Encodings Generators (PEGs), a module that produces positional encodings dynamically, and the use of global average pooling as an alternative to the (non-translation-invariant) class token.</p>
-<p>PEGs reshape the flattened input sequence to 2D, apply a series of convolutional layers (the authors use depthwise separable convolutions) with zero-padding, and flatten the result. Positional information is thus introduced by the presence of zero-padding, unlike in ViTs, where 1D learnable positional embeddings are used. The method has two main advantages: * The model is now translation invariant. * The model can now be used as-is on higher resolutions, unlike normal ViTs that require rescaling of the positional embeddings before fine-tuning.</p>
+<p>PEGs reshape the flattened input sequence to 2D, apply a series of convolutional layers (the authors use depthwise separable convolutions) with zero-padding, and flatten the result. Positional information is thus introduced by the presence of zero-padding, unlike in ViTs, where 1D learnable positional embeddings are used. The method has two main advantages:</p>
+<ul>
+<li>The model is now translation invariant.</li>
+<li>The model can now be used as-is on higher resolutions, unlike normal ViTs that require rescaling of the positional embeddings before fine-tuning.</li>
+</ul>
 <center>
 <div class="layout-chunk" data-layout="l-body">
 <div class="figure"><span id="fig:unnamed-chunk-3"></span>
@@ -2353,13 +2362,15 @@ Figure 7: Input image (top left), attention maps of an untrained SA block (top r
 <div class="appendix-bottom">
   <h3 id="references">References</h3>
   <div id="references-listing"></div>
+  <h3 id="reuse">Reuse</h3>
+  <p>Text and figures are licensed under Creative Commons Attribution <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. The figures that have been reused from other sources don't fall under this license and can be recognized by a note in their caption: "Figure from ...".</p>
   <h3 id="citation">Citation</h3>
   <p>For attribution, please cite this work as</p>
-  <pre class="citation-appendix short">Zanichelli (2021, April 27). IAML Distill Blog: Transformers in Vision: a Recap. Retrieved from https://iaml-it.github.io/distill/posts/2021-04-28-transformers-in-vision/</pre>
+  <pre class="citation-appendix short">Zanichelli (2021, April 28). IAML Distill Blog: Transformers in Vision. Retrieved from https://iaml-it.github.io/distill/posts/2021-04-28-transformers-in-vision/</pre>
   <p>BibTeX citation</p>
   <pre class="citation-appendix long">@misc{zanichelli2021transformers,
   author = {Zanichelli, Niccolò},
-  title = {IAML Distill Blog: Transformers in Vision: a Recap},
+  title = {IAML Distill Blog: Transformers in Vision},
   url = {https://iaml-it.github.io/distill/posts/2021-04-28-transformers-in-vision/},
   year = {2021}
 }</pre>
