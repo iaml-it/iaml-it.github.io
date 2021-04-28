@@ -19,6 +19,7 @@
     <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
   </info>
   <macro name="title">
+    <text variable="citation-number" suffix=". "/>
     <choose>
       <if type="bill book graphic legal_case legislation motion_picture report song" match="any">
         <text variable="title" font-style="italic"/>
@@ -35,57 +36,12 @@
       <et-al font-style="italic"/>
     </names>
   </macro>
-  <macro name="access">
+  <macro name="journal">
     <choose>
-      <if variable="volume"/>
-      <else-if variable="DOI">
-        <text variable="DOI" prefix="doi:"/>
+      <if variable="booktitle"/>
+      <else-if variable="journal">
+        <text variable="journal" suffix=", Vol "/>
       </else-if>
-    </choose>
-  </macro>
-  <macro name="issuance">
-    <choose>
-      <if type="bill book graphic legal_case legislation motion_picture song thesis chapter paper-conference" match="any">
-        <group delimiter="; " suffix=".">
-          <group delimiter=", " prefix="(" suffix=")">
-            <text variable="publisher" form="long"/>
-            <date variable="issued">
-              <date-part name="year"/>
-            </date>
-          </group>
-        </group>
-      </if>
-      <else-if type="report webpage post post-weblog" match="any">
-        <group delimiter=" ">
-          <text variable="URL"/>
-          <date date-parts="year" form="text" variable="issued" prefix="(" suffix=")"/>
-        </group>
-      </else-if>
-      <else>
-        <date variable="issued" prefix="(" suffix=")">
-          <date-part name="year"/>
-        </date>
-      </else>
-    </choose>
-  </macro>
-  <macro name="container-title">
-    <choose>
-      <if type="article-journal">
-        <text variable="container-title" font-style="italic" form="short"/>
-      </if>
-      <else>
-        <text variable="container-title" font-style="italic"/>
-      </else>
-    </choose>
-  </macro>
-  <macro name="editor">
-    <choose>
-      <if type="chapter paper-conference" match="any">
-        <names variable="editor" prefix="(" suffix=")">
-          <label form="short" suffix=" "/>
-          <name and="symbol" delimiter-precedes-last="never" initialize-with=". " name-as-sort-order="all"/>
-        </names>
-      </if>
     </choose>
   </macro>
   <macro name="volume">
@@ -109,24 +65,13 @@
       <text variable="citation-number"/>
     </layout>
   </citation>
-  <bibliography et-al-min="6" et-al-use-first="1" second-field-align="flush" entry-spacing="0" line-spacing="2">
-    <layout suffix=".">
-      <text variable="citation-number" suffix="."/>
-      <group delimiter=" ">
+  <bibliography hanging-indent="false" et-al-min="7" et-al-use-first="3" second-field-align="flush" entry-spacing="4" line-spacing="4">
+    <layout>
+        <text macro="title" font-weight="bold" suffix="." />
         <text macro="author" suffix="."/>
-        <text macro="title" suffix="."/>
-        <choose>
-          <if type="chapter paper-conference" match="any">
-            <text term="in"/>
-          </if>
-        </choose>
-        <text macro="container-title"/>
-        <text macro="editor"/>
-        <text macro="volume"/>
-        <text variable="page"/>
-        <text macro="issuance"/>
-        <text macro="access"/>
-      </group>
+        <text variable="year" suffix="."/>
+        <text macro="journal" suffix="."/>
+        <text macro="volume" suffix="."/>
     </layout>
   </bibliography>
 </style>

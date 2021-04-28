@@ -12,11 +12,13 @@ date: 04-28-2021
 output:
   distill::distill_article:
     toc: true
-    toc_depth: 2
+    toc_depth: 3
     self_contained: false
 creative_commons: CC BY
 bibliography: bibliography.bib
 csl: nature.csl
+link-citations: yes
+
 ---
 
 
@@ -68,7 +70,7 @@ The goal for many follow-up papers would be that of matching (and surpassing) th
 
 [**Training data-efficient image transformers & distillation through attention**](https://arxiv.org/abs/2012.12877)[@deit] was the first paper to show that models based on ViTs could be competitive on ImageNet without access to additional data. 
 
-The paper has two main contributions:
+Two main contributions characterize the paper:
 
 * A novel training recipe (referred to below as the DeiT recipe), characterized by more substantial data augmentation and stochastic depth[@depth]. These changes introduce additional regularization limiting ViT's tendency to overfit in the small data regime, thus boosting its performance. The authors recommend the use of Rand-Augment[@randaugment], Mixup[@mixup], CutMix[@cutmix], and Random Erasing[@randerasing]; they also recommend not to use DropOut[@dropout].
 * Hard-label distillation. In this approach, an additional learnable token, called the distillation token, is concatenated to the patch embeddings. The model is then trained with the loss function $$\mathcal{L}_{hardDistill}=\frac{1}{2}\mathcal{L}_{CE}(\sigma(Z_{cls}), y_{true}) + \frac{1}{2}\mathcal{L}_{CE}(\sigma(Z_{distill}), y_{teacher})$$ where $\mathcal{L}_{CE}$ is the cross-entropy loss function, $\sigma$ is the softmax function, $Z_{cls}$ and $Z_{distill}$ are the student model's logits derived respectively from the class and distillation tokens, and $y_{true}$ and $y_{teacher}$ are respectively the true and the teacher's hard labels. This distillation technique allows the model to learn even when the combination of multiple strong data augmentations causes the provided label to be imprecise, as the teacher network will produce the most probable label. Interestingly, the authors found CNNs to be better teacher networks than other Vision Transformers.
@@ -108,13 +110,11 @@ The resulting models, called Conditional Positional Encoding Vision Transformers
 
 [**Transformer in Transformer**](https://arxiv.org/abs/2103.00112)[@tnt] (TNT) studied the importance of intra-patch structure by introducing an additional transformer block, dedicated to pixel embeddings, inside the transformer blocks used in ViT.
 
-<center>
-```{r out.width = "100%", fig.cap = "The Transformer in Transformer (TNT) architecture."}
+```{r out.width = "100%", fig.align="center", fig.cap = "The Transformer in Transformer (TNT) architecture."}
 knitr::include_graphics("tnt.png")
 ```
-</center>
 
-The output of the inner transformer block is both sent as-is to the next layer and adapted for use in the outer transformer block which can now take into account both inter patch relationships (like  ViT does) and intra-patch structure. The authors also introduced a separate set of positional embeddings, added to the pixel embeddings before entering the encoder.
+The output of the inner transformer block is both sent as-is to the next layer and adapted for use in the outer transformer block which can now take into account both inter-patch relationships (like  ViT does) and intra-patch structure. The authors also introduced a separate set of positional embeddings, added to the pixel embeddings before entering the encoder.
 
 The models, trained with the DeiT recipe, outperformed both ViTs and DeiTs on ImageNet, achieving higher parameter and FLOP efficiency, although not quite as high as EfficientNet's.
 
@@ -169,6 +169,7 @@ The authors demonstrated the effectiveness of this elegant approach through an e
 Two more papers exploring the application of convolutional insights to Vision Transformers are [**Incorporating Convolution Designs into Visual Transformers**](https://arxiv.org/abs/2103.11816)[@ceit] and [**LocalViT: Bringing Locality to Vision Transformers**](https://arxiv.org/abs/2104.05707)[@localvit].
 
 The first paper has three main contributions:
+
 * The Image-to-Tokens (I2T) stem, substituting ViT's convolutional stem and characterized by the addition of a max-pooling operation followed by batch normalization.
 * The Locally enhanced Feedforward block, substituting ViT's feedforward block and characterized by the use of depthwise convolutions and batch normalization.
 * The Layer-wise Class-Token Attention, which is applied at the end of the network and attends unidirectionally to all class tokens throughout the network.
@@ -185,7 +186,7 @@ Several papers have studied the application of a hierarchical structure to Visio
 
 [**Tokens-to-Token ViT: Training Vision Transformers from Scratch on ImageNet**](https://arxiv.org/abs/2101.11986)[@t2t] introduced the Token-to-Token module (T2T), a module that reshapes the input sequence to a 2D structure, applies a soft split (allowing overlapping patches), and flattens the resulting patches. By adjusting the patch size used in the module, the length of the token sequences diminishes progressively throughout the network.
 
-```{r, out.width="100%", fig.cap = "The Token-to-Token module architecture."}
+```{r, out.width="100%", fig.align="center", fig.cap = "The Token-to-Token module architecture."}
 knitr::include_graphics("t2t.png")
 ```
 
@@ -213,15 +214,16 @@ knitr::include_graphics("swin1.png")
 
 The authors also reported positive results applying T5-style relative positional bias in attention blocks and obtained promising results both on ImageNet and ImageNet-21k, as well as in object detection and semantic segmentation tasks.
 
-[**Rethinking Spatial Dimensions of Vision Transformers**](https://arxiv.org/abs/2103.16302)[@pit] introduced a novel pooling layer, characterized by a depthwise convolution (for patch embeddings) and a fully connected layer (for the class token). This simple change allowed the models, named Pooling-based vIsion Transformers (PiTs), to outperform vanilla Vision Transformers in the ImageNet data regime.
+[**Rethinking Spatial Dimensions of Vision Transformers**](https://arxiv.org/abs/2103.16302)[@pit] introduced a novel pooling layer, characterized by a depthwise convolution (for patch embeddings) and a fully connected layer (for the class token). This simple change allowed the models, named Pooling-based Vision Transformers (PiTs), to outperform vanilla Vision Transformers in the ImageNet data regime.
 
-[**LeViT: a Vision Transformer in ConvNet’s Clothing for Faster Inference**](https://arxiv.org/abs/2104.01136)[@levit] studied a hybrid architecture characterized by a longer convolutional stem and shrink attention blocks that progressively diminish the spatial dimensions of the feature maps throughout the network. The authors also proposed the use of global average pooling instead of the class token, the injection of positional information through attention bias, and the addition of a [GELU activation](https://arxiv.org/abs/1606.08415)[@gelu] in the attention block.
+[**LeViT: a Vision Transformer in ConvNet’s Clothing for Faster Inference**](https://arxiv.org/abs/2104.01136)[@levit] studied a hybrid architecture characterized by a longer convolutional stem and shrinking attention blocks that progressively diminish the spatial dimensions of the feature maps throughout the network. The authors also proposed the use of global average pooling instead of the class token, the injection of positional information through attention bias, and the addition of a [GELU activation](https://arxiv.org/abs/1606.08415)[@gelu] in the attention block.
 
 The authors named the models LeViTs, trained them using both the DeiT training recipe and the DeiT distillation procedure, and showed that the networks are capable of high-speed inference, outperforming EfficientNets and DeiTs in the accuracy/step-time trade-off, on both GPU and CPU.
 
 ### Multi-Scale features and Cross-Attention
 
 [**CrossViT: Cross-Attention Multi-Scale Vision Transformer for Image Classification**](https://arxiv.org/abs/2103.14899)[@crossvit] proposed the use of multi-scale features by adapting the Vision Transformer to have two branches:
+
 * A large (or primary) one characterized by large patch size, deep transformer encoder, and wide embedding dimension.
 * A small (or complementary) one characterized by smaller patch size, shallower encoder, and narrower embedding dimension.
 
@@ -290,7 +292,7 @@ knitr::include_graphics("sovit.png")
 
 The resulting models, named Second-order ViTs (So-ViTs), are trained with an expanded DeiT recipe, and obtain competitive results.
 
-### Comparison on Image Classification
+## A Comparison for Image Classification
 
 Before continuing, we recap the reported performance of most models presented up to this point.
 
@@ -328,7 +330,7 @@ Similarly, the number of parameters is a poor indicator of memory consumption du
  
 ResNet-RS models are a great example of this issue: an ResNet-RS has respectively $3{-}4\times$ and $2\times$ the amount of parameters and FLOPs of a similarly accurate EfficientNet, yet it is $3\times$ as fast and consumes about $2\times$ less memory. For these reasons, it would be preferable for authors of new studies to include, together with parameter count and FLOP use, also latency and memory usage measurements.
 
-## Robustness & Equivariance
+## Robustness and Equivariance
 
 [**Understanding Robustness of Transformers for Image Classification**](https://arxiv.org/abs/2103.14586)[@robustness] studied the robustness of Vision Transformers to input, model, and adversarial perturbations. The authors found Vision Transformers to have an advantage compared to CNNs of similar size for both input and model perturbations (particularly in large data regimes). However, for some kinds of adversarial attacks, Vision Transformers were found to be more susceptible, at least for small sample sizes.
 
@@ -336,7 +338,7 @@ The authors also found vanilla Vision Transformers highly redundant, a finding f
 
 In [**Group Equivariant Stand-Alone Self-Attention For Vision**](https://openreview.net/forum?id=JkfYjnOEo6M)[@gsa], the authors developed a self-attention formulation equivariant to arbitrary symmetry groups. The resulting models, called Group Self-Attention Networks (GSA-Nets), enjoy superior parameter efficiency, although not quite reaching that of comparable-size equivariant CNNs.
 
-## Vision Transformers in self-supervised learning
+## Vision Transformers in Self-Supervised Learning
 
 Building on top of previous studies ([iGPT](https://openai.com/blog/image-gpt/)[@igpt] and [masked patch prediction in the Vision Transformers paper](https://openreview.net/pdf?id=YicbFdNTTy#subsubsection.B.1.2)[@vit]), two papers have investigated self-supervised approaches using Vision Transformers.
 
@@ -356,7 +358,7 @@ Unfortunately, the authors also noted that this approach was not sufficient: the
 knitr::include_graphics("sit.png")
 ```
 
-## Vision Transformers in medical research
+## Vision Transformers in Medical Research
 
 Vision Transformers have recently been applied to medical research, mainly in segmentation tasks and diagnosis prediction ones.
 
@@ -368,13 +370,13 @@ In [**Medical Transformer: Gated Axial-Attention for Medical Image Segmentation*
 knitr::include_graphics("medt.png")
 ```
 
-[**UNETR: Transformers for 3D Medical Image Segmentation**](https://arxiv.org/abs/2103.10504)[@unetr] adapted ViTs for 3D medical segmentation tasks. The authors showed that a simple adaption was sufficient to improve over baselines on several 3D segmentation tasks. 
+[**UNETR: Transformers for 3D Medical Image Segmentation**](https://arxiv.org/abs/2103.10504)[@unetr] adapted ViTs for 3D medical segmentation tasks. The authors showed that a simple adaptation was sufficient to improve over baselines on several 3D segmentation tasks. 
 
 ## Vision Transformers for Video Recognition
 
 [**Video Transformer Network**](https://arxiv.org/abs/2102.00719)[@vtn] (VTN) proposed the use of a pre-trained 2D spatial backbone (the authors experiment with both CNN-based and ViT-based feature extractors) combined with a Transformer (in this case, a Longformer) operating on the extracted feature maps. The authors showed that this simple approach was competitive with baselines such as [SlowFast](https://arxiv.org/abs/1812.03982)[@slowfast].
 
-[**Is Space-Time Attention All You Need for Video Understanding**](https://arxiv.org/abs/2102.05095)[@timesformer] introduced TimeSformer, an adaption of ViTs to video. After exploring several possible attention variants, the authors proposed one deemed Divided Space-Time attention. In this approach, frames are first divided into patches and linearly embedded, then fed to a single transformer encoder. Every encoder layer has two attention blocks applied consecutively: the first one on patch embeddings at the same location but in different frames (temporal attention), the second on patch embeddings in the same frame (spatial attention).
+[**Is Space-Time Attention All You Need for Video Understanding?**](https://arxiv.org/abs/2102.05095)[@timesformer] introduced TimeSformer, an adaption of ViTs to video. After exploring several possible attention variants, the authors proposed one called Divided Space-Time attention. In this approach, frames are first divided into patches and linearly embedded, then fed to a single transformer encoder. Every encoder layer has two attention blocks applied consecutively: the first one on patch embeddings at the same location but in different frames (temporal attention), the second on patch embeddings in the same frame (spatial attention).
 
 The authors adopted ImageNet pretraining for spatial attention blocks and showed that the resulting models achieved state of the art, outperforming previous baselines on standard datasets such as [Kinetics-400](https://arxiv.org/abs/1705.06950)[@kinetics].
 
@@ -414,4 +416,4 @@ One cannot help but feel excited as more and more researchers from all over the 
 
 ## Acknowledgements {.appendix}
 
-Thanks to Simone Scardapane, Andrea Panizza, Amedeo Buonanno and Iacopo Poli for help in proofreading and improving this work.
+Thanks to [Simone Scardapane](https://twitter.com/s_scardapane), [Andrea Panizza](https://twitter.com/unsorsodicorda), [Amedeo Buonanno](https://twitter.com/linker81) and [Iacopo Poli](https://twitter.com/iacopo_poli) for help in proofreading and improving this work.

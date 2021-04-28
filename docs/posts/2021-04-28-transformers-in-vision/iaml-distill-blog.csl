@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style class="in-text" version="1.0" et-al-min="2" page-range-format="expanded" demote-non-dropping-particle="sort-only" default-locale="en-US" xmlns="http://purl.org/net/xbiblio/csl">
+  <!-- This style was edited with the Visual CSL Editor (https://editor.citationstyles.org/visualEditor/) -->
+  <info>
+    <title>IAML Distill Blog</title>
+    <title-short>IAML Blog</title-short>
+    <id>http://www.zotero.org/styles/iaml-distill-blog</id>
+    <link rel="self" href="http://www.zotero.org/styles/iaml-distill-blog"/>
+    <author>
+      <name>Niccolò Zanichelli</name>
+    </author>
+    <category citation-format="numeric"/>
+    <category field="machine learning"/>
+    <summary>The IAML Blog citation style.</summary>
+    <updated>2021-04-28T15:51:14+00:00</updated>
+    <rights license="http://creativecommons.org/licenses/by-sa/3.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 3.0 License</rights>
+  </info>
+  <locale xml:lang="en">
+    <terms>
+      <term name="page-range-delimiter">-</term>
+    </terms>
+  </locale>
+  <macro name="editor">
+    <names variable="editor">
+      <name name-as-sort-order="all" sort-separator=" " initialize-with="" delimiter=", " delimiter-precedes-last="always"/>
+      <label form="short" prefix=", "/>
+    </names>
+  </macro>
+  <macro name="author">
+    <group suffix=".">
+      <names variable="author">
+        <name delimiter-precedes-last="always" initialize-with="." name-as-sort-order="all" sort-separator=" "/>
+      </names>
+    </group>
+  </macro>
+  <macro name="access">
+    <group>
+      <text variable="DOI" form="short" strip-periods="false" quotes="false"/>
+    </group>
+  </macro>
+  <macro name="title">
+    <text variable="title"/>
+  </macro>
+  <macro name="publisher">
+    <text variable="publisher"/>
+  </macro>
+  <macro name="edition">
+    <group>
+      <text variable="journal" suffix=", "/>
+      <text variable="volume" prefix="Vol "/>
+    </group>
+  </macro>
+  <citation collapse="citation-number">
+    <sort>
+      <key variable="citation-number"/>
+    </sort>
+    <layout delimiter="," vertical-align="sup">
+      <text variable="citation-number"/>
+      <group prefix="(" suffix=")">
+        <label variable="locator" form="short" strip-periods="true"/>
+        <text variable="locator"/>
+      </group>
+    </layout>
+  </citation>
+  <bibliography hanging-indent="false" et-al-min="7" et-al-use-first="3" second-field-align="flush">
+    <layout>
+      <text variable="citation-number" suffix=". "/>
+      <text macro="title" font-weight="bold" prefix=" " suffix=". "/>
+      <text macro="author" suffix=", "/>
+      <text variable="year" suffix="."/>
+      <text macro="edition"/>
+      <text variable="URL" prefix=" "/>
+    </layout>
+  </bibliography>
+</style>
