@@ -4,7 +4,7 @@ description: |
   A short description of the post.
 author:
   - name: Niccolò Zanichelli
-    url: https://example.com/norajones
+    url: https://twitter.com/nickz_42
 date: 04-27-2021
 output:
   distill::distill_article:
@@ -20,11 +20,11 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Introduction
 
-Initially introduced with the now-famous [**Attention is all you need**]((https://arxiv.org/abs/1706.03762))[@transformer], the Transformer has dominated the field of Natural Language Processing (NLP) for years. Particularly worth noting is the effort gone into scaling up Transformer-based models, such as BERT[@bert], MegatronLM[@megatron], T5[@t5], and the various GPTs[@gpt; @gpt2; @gpt3], due to their favourable scaling characteristics[@neural_laws1; @neural_laws2].
+Initially introduced with the now-famous [**Attention is all you need**]((https://arxiv.org/abs/1706.03762))[@transformer], the Transformer has dominated the field of Natural Language Processing (NLP) for years. Particularly worth noting is the effort gone into scaling up Transformer-based models, such as [BERT](https://doi.org/10.18653/v1/n19-1423)[@bert], [MegatronLM](http://arxiv.org/abs/1909.08053)[@megatron], [T5](http://jmlr.org/papers/v21/20-074.html)[@t5], and the various GPTs ([GPT](https://openai.com/blog/language-unsupervised/)[@gpt], [GPT-2](https://openai.com/blog/better-language-models/)[@gpt2] and [GPT-3](https://proceedings.neurips.cc/paper/2020/hash/1457c0d6bfcb4967418bfb8ac142f64a-Abstract.html)[@gpt3]), due to their favourable scaling characteristics[@neural_laws1; @neural_laws2].
 
 The success of transformers in NLP has not gone unnoticed in other fields, where they have been responsible for significant breakthroughs such as [AlphaFold 2](https://deepmind.com/blog/article/alphafold-a-solution-to-a-50-year-old-grand-challenge-in-biology) in the field of protein folding.
 
-Important works adapting transformers (and self-attention) to vision include Attention Augmented Convolutional Networks @aacn, Stand-Alone Self-Attention models[@sasa] (SASA models), DETR[@detr], Visual Transformers[@visual_transformer] and LambdaNetworks[@lambda]; as well as Image Transformers[@image_transformer] and Axial Transformers[@axial] in the generative domain.
+Important works adapting transformers (and self-attention) to vision include [Attention Augmented Convolutional Networks](https://doi.org/10.1109/ICCV.2019.00338)[@aacn], [Stand-Alone Self-Attention models](https://proceedings.neurips.cc/paper/2019/hash/3416a75f4cea9109507cacd8e2f2aefc-Abstract.html)[@sasa] (SASA models), [DETR](https://link.springer.com/chapter/10.1007/978-3-030-58452-8_13)[@detr], [Visual Transformers](https://arxiv.org/abs/2006.03677)[@visual_transformer] and [LambdaNetworks](https://arxiv.org/abs/2102.08602)[@lambda]; as well as [Image Transformers](http://proceedings.mlr.press/v80/parmar18a.html)[@image_transformer] and [Axial Transformers](http://arxiv.org/abs/1912.12180)[@axial] in the generative domain.
 
 For an in-depth introduction to these works, we recommend two recent reviews: [**A Survey in Visual Transformers**](https://arxiv.org/abs/2012.12556)[@survey1] and [**Transformers in Vision: A Survey**](https://arxiv.org/abs/2101.01169)[@survey2].
 
@@ -86,6 +86,7 @@ Further, the use of ResNet blocks in the initial stages to efficiently learn low
 [**Conditional Positional Encodings for Vision Transformers**](https://arxiv.org/abs/2102.10882)[@conditional] studied alternatives to the positional embeddings and class token used in ViTs. In particular, the paper proposes the use of Positional Encodings Generators (PEGs), a module that produces positional encodings dynamically, and the use of global average pooling as an alternative to the (non-translation-invariant) class token.
 
 PEGs reshape the flattened input sequence to 2D, apply a series of convolutional layers (the authors use depthwise separable convolutions) with zero-padding, and flatten the result. Positional information is thus introduced by the presence of zero-padding, unlike in ViTs, where 1D learnable positional embeddings are used. The method has two main advantages:
+
 * The model is now translation invariant.
 * The model can now be used as-is on higher resolutions, unlike normal ViTs that require rescaling of the positional embeddings before fine-tuning.
 
