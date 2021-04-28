@@ -1,9 +1,9 @@
 ---
 title: "Transformers in Vision"
 description: |
-  What have Transformers been up to?
+  What have Vision Transformers been up to?
 base_url: "https://iaml-it.github.io/"
-preview: "posts/2021-04-28-transformers-in-vision/ViT.png"
+preview: "posts/2021-04-28-transformers-in-vision/imagenet.png"
 author:
   - first_name: "Niccolò"
     last_name: "Zanichelli"
