@@ -1,8 +1,8 @@
-name: "."
-title: "IAML Distill"
+name: "IAML Distill Blog"
+title: "IAML Distill Blog"
 description: |
   IAML Distill
-output_dir: "docs"
+output_dir: "."
 navbar:
   right:
     - text: "Home"
