@@ -20,14 +20,7 @@
   </info>
   <macro name="title">
     <text variable="citation-number" suffix=". "/>
-    <choose>
-      <if type="bill book graphic legal_case legislation motion_picture report song" match="any">
-        <text variable="title" font-style="italic"/>
-      </if>
-      <else>
-        <text variable="title"/>
-      </else>
-    </choose>
+    <text variable="title"/>
   </macro>
   <macro name="author">
     <names variable="author">
@@ -35,6 +28,12 @@
       <label form="short" prefix=", "/>
       <et-al font-style="italic"/>
     </names>
+    <text variable="year" suffix="."/>
+  </macro>
+  <macro name="issued">
+    <date variable="issued">
+      <date-part name="year" form="long"/>
+    </date>
   </macro>
   <macro name="journal">
     <choose>
@@ -68,8 +67,8 @@
   <bibliography hanging-indent="false" et-al-min="7" et-al-use-first="3" second-field-align="flush" entry-spacing="4" line-spacing="4">
     <layout>
         <text macro="title" font-weight="bold" suffix="." />
-        <text macro="author" suffix="."/>
-        <text variable="year" suffix="."/>
+        <text macro="author" suffix=", "/>
+        <text macro="issued" suffix=". "/>
         <text macro="journal" suffix="."/>
         <text macro="volume" suffix="."/>
     </layout>

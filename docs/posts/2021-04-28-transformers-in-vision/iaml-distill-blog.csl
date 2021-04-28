@@ -67,7 +67,6 @@
       <text variable="citation-number" suffix=". "/>
       <text macro="title" font-weight="bold" prefix=" " suffix=". "/>
       <text macro="author" suffix=", "/>
-      <text variable="year" suffix="."/>
       <text macro="edition"/>
       <text variable="URL" prefix=" "/>
     </layout>
