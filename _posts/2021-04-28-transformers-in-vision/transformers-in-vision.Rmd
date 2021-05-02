@@ -140,6 +140,7 @@ The resulting models, called Deep Vision Transformers (DeepViTs), are characteri
 [**Going deeper with Image Transformers**](https://arxiv.org/abs/2103.17239)[@cait] identified two main issues in DeiT models: the lack of performance improvement (and even performance degradation) at increased network depth and the double objective that characterizes the transformer encoder, which has to model both inter-patch relationships as well as that between the class token and the patch embeddings. To demonstrate the latter, the authors show that a DeiT where the class token is inserted later on in the network outperforms a normal DeiT.
 
 Two main contributions characterize the paper:
+
 * LayerScale, a novel normalization strategy applied to residual branches. 
 * Class-attention layers, a layer dedicated to the efficient extraction of information relevant to the classification task from the processed patch embeddings.
 
