@@ -125,7 +125,7 @@ The models, trained with the DeiT recipe, outperformed both ViTs and DeiTs on Im
 
 [**DeepViT: Towards Deeper Vision Transformer**](https://arxiv.org/abs/2103.11886)[@deepvit] investigated how the performance of ViTs changed with increasing depth. After 24 transformer blocks, the authors discovered that adding additional blocks did not lead to improved performance, as both the feature maps and the attention matrices end up being remarkably similar to each other, a problem they name Attention Collapse.
 
-To solve this issue, the authors proposed a simple variant of self-attention that they call Re-Attention, characterized by a learnable transformation matrix $\Theta \in  R^{H \times H}$ (where $H$ is the  number of attention heads) applied directly after the softmax. This matrix (which is shared throughout the network but that can also be layer-specific) allows the model to establish cross-head communication, diminishing inter-layer feature map similarity.
+To solve this issue, the authors proposed a simple variant of self-attention that they call Re-Attention, characterized by a learnable transformation matrix $\Theta \in  R^{H \times H}$ (where $H$ is the  number of attention heads) applied directly after the softmax. This matrix (which is shared throughout the network but can also be layer-specific) allows the model to establish cross-head communication, diminishing inter-layer feature map similarity.
 
 The authors also reported positive results following an approach similar to the one proposed in [LazyFormer](https://arxiv.org/abs/2102.12702)[@lazy]: reusing the attention matrix for the last half of the network caused no degradation in performance.
 
@@ -216,7 +216,7 @@ In the last stage of the network, all local windows have been merged, resulting 
 knitr::include_graphics("swin1.png")
 ```
 
-The authors also reported positive results applying T5-style relative positional bias in attention blocks and obtained promising results both on ImageNet and ImageNet-21k, as well as in object detection and semantic segmentation tasks.
+The authors also reported positive results applying T5-style relative positional bias in attention blocks and obtained promising results on both ImageNet and ImageNet-21k, as well as in object detection and semantic segmentation tasks.
 
 [**Rethinking Spatial Dimensions of Vision Transformers**](https://arxiv.org/abs/2103.16302)[@pit] introduced a novel pooling layer, characterized by a depthwise convolution (for patch embeddings) and a fully connected layer (for the class token). This simple change allowed the models, named Pooling-based Vision Transformers (PiTs), to outperform vanilla Vision Transformers in the ImageNet data regime.
 
