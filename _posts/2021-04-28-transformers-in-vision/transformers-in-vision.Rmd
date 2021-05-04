@@ -300,9 +300,9 @@ The resulting models, named Second-order ViTs (So-ViTs), are trained with an exp
 
 Before continuing, we recap the reported performance of most models presented up to this point.
 
-To provide a fair comparison, we only consider models trained at the same resolution ($224 \times 224$) apart from ViTs that were trained at $384 \times 384$. We also denote models fine-tuned at higher ($384\times384$) resolution with an upward arrow, and exclude models trained for more than $400$ epochs or using the DeiT hard-label distillation technique, because only the DeiT, T2T, and CaiT papers report results using it.
+To provide a fair comparison, we only consider models trained at the same resolution ($224 \times 224$) apart from ViTs that were trained at $384 \times 384$. We also denote models fine-tuned at higher ($384\times384$) resolution with an upward arrow, and exclude models trained for more than $400$ epochs or using the DeiT hard-label distillation technique, because only the DeiT, T2T, and CaiT papers report results using it. Some convolutional models (EfficientNets, NFNets, ResNet-RS and EfficientNetV2s) are included for reference, even though they use both different recipes and training resolution.
 
-We follow [**An Analysis of Deep Neural Network Models for Practical Applications**](https://openreview.net/forum?id=Bygq-H9eg)[@canziani] in graphing ImageNet top-1 accuracy vs. FLOPs and parameter count. 
+We follow [**An Analysis of Deep Neural Network Models for Practical Applications**](https://openreview.net/forum?id=Bygq-H9eg)[@canziani] in graphing ImageNet top-1 accuracy vs. FLOPs and parameter count. A lot of models are displayed, so make sure to enable and disable the display of the various models (by clicking them in the legend) as to better explore the visualization.
 
 ```{r, layout="l-page"}
 htmltools::tags$iframe(
